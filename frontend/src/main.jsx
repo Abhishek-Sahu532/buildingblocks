@@ -19,6 +19,7 @@ import FAQPage from "./Pages/FAQ.jsx";
 import PrivacyPolicyPage from "./Pages/Privacypolicy.jsx";
 import PropertyDetailsPage from "./Pages/PropertyDetails.jsx";
 import NotFound from "./Pages/NotFound.jsx";
+import A from "./Pages/A.jsx";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/a",
+    element: <A />,
   },
   {
     path: "/signup",

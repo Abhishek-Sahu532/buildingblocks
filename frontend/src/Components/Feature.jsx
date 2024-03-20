@@ -6,7 +6,7 @@ import { Heading } from "../Components/Heading";
 
 const Feature = () => {
   return (
-    <div className="flex flex-row md:flex-row w-full gap-6 justify-center items-center mx-auto px-20 mt-7">
+    <div className="flex flex-col md:flex-row w-full gap-6 justify-center items-center mx-auto px-7 md:px-20 mt-7">
       <div className="flex flex-row items-center justify-center w-full gap-[18px]">
         <Button
           color="white_A700"
