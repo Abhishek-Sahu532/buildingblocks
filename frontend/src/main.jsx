@@ -5,7 +5,6 @@ import "./index.css";
 import "./Styles/font.css";
 import "./Styles/index.css";
 import "./Styles/tailwind.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./Pages/LandingPage.jsx";
 import SignIn from "./Pages/SignIn.jsx";
@@ -19,7 +18,8 @@ import FAQPage from "./Pages/FAQ.jsx";
 import PrivacyPolicyPage from "./Pages/Privacypolicy.jsx";
 import PropertyDetailsPage from "./Pages/PropertyDetails.jsx";
 import NotFound from "./Pages/NotFound.jsx";
-import A from "./Pages/A.jsx";
+import SwiperCard from "./Components/SwiperCard.jsx";
+// import A from "./Pages/A.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,8 +73,8 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
-    path: "/a",
-    element: <A />,
+    path: "/testing",
+    element: <SwiperCard/>,
   },
   {
     path: "/signup",
