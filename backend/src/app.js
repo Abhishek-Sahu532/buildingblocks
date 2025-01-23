@@ -1,6 +1,6 @@
 import express from "express";
-import  cookieParser   from "cookie-parser";
-import multer from "multer";
+import cookieParser from "cookie-parser";
+
 const app = express();
 
 // //HANDLING UNCAUGHT EXCEPTION
@@ -21,8 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-import agentUser from "./routes/routes.user.js";
-
+import agentUser from "./routes/routes.agent.js";
 
 app.use("/api/v1/agent", agentUser);
 

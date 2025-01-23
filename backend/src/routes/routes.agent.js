@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addAgent } from "../controllers/agent.controllers.js";
+import { addAgent, agentLogin } from "../controllers/agent.controllers.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
@@ -13,5 +13,7 @@ router.route("/add-agent").post(
   ]),
   addAgent
 );
+
+router.route('/login').post(agentLogin)
 
 export default router;

@@ -1,6 +1,31 @@
 import prisma from "../config/db.js";
 import bcrypt from "bcrypt";
 import uploadOnCloudinary from "../utils/uploadOnCloudinary.js";
+import jwt from "jsonwebtoken";
+
+const generateJWTToken = async (userEmail, firstName, lastName) => {
+  let accessToken = await jwt.sign(
+    {
+      email: userEmail,
+      firstName: firstName,
+      lastName: lastName,
+    },
+    process.env.JWT_ACCESS_SECRET,
+    { expiresIn: process.env.JWT_ACCESS_EXPIRY }
+  );
+
+  let refreshToken = await jwt.sign(
+    {
+      email: userEmail,
+      firstName: firstName,
+      lastName: lastName,
+    },
+    process.env.JWT_REFRESH_SECRET,
+    { expiresIn: process.env.JWT_REFRESH_EXPIRY }
+  );
+
+  return { accessToken, refreshToken };
+};
 
 export const addAgent = async (req, res, next) => {
   try {
@@ -18,8 +43,6 @@ export const addAgent = async (req, res, next) => {
       totalExp,
     } = req.body;
 
-    console.log(typeof experienceInField);
-    console.log(lastName, email, password, confirmPassword, city, state);
 
     if (
       [
@@ -64,7 +87,6 @@ export const addAgent = async (req, res, next) => {
         email: email,
       },
     });
-    console.log(existingUser);
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -112,4 +134,59 @@ export const addAgent = async (req, res, next) => {
       message: error?.message,
     });
   }
+};
+
+export const agentLogin = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  //EMAIL CHECK
+  let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+  console.log("regexForEmail", regexForEmail.test(email));
+
+  if (!regexForEmail.test(email)) {
+    return res.status(400).json({
+      success: false,
+      message: "Provide the valid email",
+    });
+  }
+  let checkUser = await prisma.agent.findFirst({
+    where: {
+      email: email,
+    },
+  });
+  if (!checkUser) {
+    return res.status(404).json({
+      success: false,
+      message: "Invalid credentials",
+    });
+  }
+
+  const isPasswordMatch = await bcrypt.compare(password, checkUser?.password);
+  if (!isPasswordMatch) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid credentials",
+    });
+  }
+  const { email: userEmail, firstName, lastName } = checkUser;
+  const { accessToken, refreshToken } = await generateJWTToken(
+    userEmail,
+    firstName,
+    lastName
+  );
+  const options = {
+    // domain: 'vid-stream-client.vercel.app',
+    path: "/",
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  };
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json({
+      success: true,
+      message: "Login successfully",
+    });
 };

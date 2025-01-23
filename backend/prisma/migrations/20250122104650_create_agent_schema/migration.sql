@@ -36,6 +36,7 @@ CREATE TABLE `Agent` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(191) NOT NULL,
     `last_name` VARCHAR(191) NOT NULL,
+    
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
     `agent_profile_pic` VARCHAR(191) NOT NULL,
