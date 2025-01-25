@@ -47,8 +47,10 @@ model Agent {
   first_name             String
   last_name              String
   full_name              String                @default("")
-  email                  String
+  email                  String                @unique
   password               String
+  mobile_number          String                 @default("")
+  otp                    Int?
   agent_profile_pic      String
   city                   String
   state                  String
@@ -58,19 +60,53 @@ model Agent {
   total_exp              Int?
   created_at             DateTime              @default(now())
   listed_properties      ResidentialProperty[]
+  accessToken            String?               @db.VarChar(300)
+  refreshToken           String?               @db.VarChar(300)
+  agent_auth             AgentAuth[]
+}
+
+model AgentAuth {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime
+  created_by Agent    @relation(fields: [agent_id], references: [id])
+  agent_id   String
+  otp        String
 }
 
 // Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
 
-//resident property
+model HouseOnwer {
+  id            String           @id @default(uuid())
+  fullname      String
+  mobile_number String            @default("")
+  email         String?          @unique
+  address       String
+  city          String
+  created_at    DateTime         @default(now())
+  auth          HouseOnwerAuth[]
+  accessToken   String?          @db.VarChar(300)
+  refreshToken  String?          @db.VarChar(300)
+}
 
+model HouseOnwerAuth {
+  id             String     @id @default(uuid())
+  created_at     DateTime   @default(now())
+  expires_at     DateTime
+  created_by     HouseOnwer @relation(fields: [house_owner_id], references: [id])
+  house_owner_id String
+  otp            String
+}
+
+//resident property
 model ResidentialProperty {
-  id                  String                @id @default(uuid())
+  id                  String             @id @default(uuid())
   owner_name          String
+  owner_mobile_number Int                @unique @default(0)
   looking_to          LookingTO          @default(BUY)
   locality            String
   property_type       PropertyType       @default(APARTMENT)
-  built_up_are        Int                @default(0)
+  built_up_area       Int                @default(0)
   furnished_type      FurnishedType      @default(UNFURNISHED)
   uploaded_by         Agent?             @relation(fields: [agentId], references: [id])
   agentId             String

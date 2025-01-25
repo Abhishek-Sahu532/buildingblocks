@@ -17,12 +17,18 @@ const app = express();
 //   });
 // });
 
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-import agentUser from "./routes/routes.agent.js";
+import agentRoutes from "./routes/routes.agent.js";
+import propertyRoutes from "./routes/routes.property.js";
+import ownerRoutes from "./routes/routes.owner.js";
 
-app.use("/api/v1/agent", agentUser);
+app.use("/api/v1/agent", agentRoutes);
+app.use("/api/v1/property", propertyRoutes);
+app.use("/api/v1/owner", ownerRoutes);
 
 export default app;

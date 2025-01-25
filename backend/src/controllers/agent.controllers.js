@@ -1,31 +1,8 @@
 import prisma from "../config/db.js";
 import bcrypt from "bcrypt";
 import uploadOnCloudinary from "../utils/uploadOnCloudinary.js";
-import jwt from "jsonwebtoken";
-
-const generateJWTToken = async (userEmail, firstName, lastName) => {
-  let accessToken = await jwt.sign(
-    {
-      email: userEmail,
-      firstName: firstName,
-      lastName: lastName,
-    },
-    process.env.JWT_ACCESS_SECRET,
-    { expiresIn: process.env.JWT_ACCESS_EXPIRY }
-  );
-
-  let refreshToken = await jwt.sign(
-    {
-      email: userEmail,
-      firstName: firstName,
-      lastName: lastName,
-    },
-    process.env.JWT_REFRESH_SECRET,
-    { expiresIn: process.env.JWT_REFRESH_EXPIRY }
-  );
-
-  return { accessToken, refreshToken };
-};
+import sendEmail from "../utils/sendEmail.js";
+import { generateJWTToken } from "../utils/generateJWTToken.js";
 
 export const addAgent = async (req, res, next) => {
   try {
@@ -36,13 +13,13 @@ export const addAgent = async (req, res, next) => {
       password,
       confirmPassword,
       city,
+      mobileNumber,
       state,
       area,
       experienceInField,
       prevOrgName,
       totalExp,
     } = req.body;
-
 
     if (
       [
@@ -62,9 +39,13 @@ export const addAgent = async (req, res, next) => {
       });
     }
 
+    // let subject = "Welcome to Our Platform!";
+    // let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
+
+    // await sendEmail(email, subject, message);
+    // return;
     //EMAIL CHECK
     let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    console.log("regexForEmail", regexForEmail.test(email));
 
     if (!regexForEmail.test(email)) {
       return res.status(400).json({
@@ -81,7 +62,6 @@ export const addAgent = async (req, res, next) => {
     }
 
     //checking for the user based on email
-
     let existingUser = await prisma.agent.findFirst({
       where: {
         email: email,
@@ -94,10 +74,8 @@ export const addAgent = async (req, res, next) => {
           "Please use the another email, this email is taken by other user",
       });
     }
-
     let hashedPassword = await bcrypt.hash(password, 10);
-
-    let avatarLocalPath = req.files.avatar[0].path;
+    let avatarLocalPath = req.files?.avatar[0]?.path;
 
     if (!avatarLocalPath) {
       return res.status(400).json({
@@ -111,9 +89,11 @@ export const addAgent = async (req, res, next) => {
       data: {
         first_name: firstName,
         last_name: lastName,
+        full_name: `${firstName} ${lastName}`,
         email: email,
         password: hashedPassword,
         agent_profile_pic: avatar?.url,
+        mobile_number: Number(mobileNumber),
         city: city,
         state: state,
         local_area: area,
@@ -122,7 +102,11 @@ export const addAgent = async (req, res, next) => {
         total_exp: parseInt(totalExp),
       },
     });
+    // console.log(newAgent)
+    //     let subject = "Welcome to Our Platform!";
+    //     let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
 
+    //     await sendEmail(email, subject, message);
     return res.status(200).json({
       success: true,
       message: "Agent created successfully",
@@ -141,7 +125,6 @@ export const agentLogin = async (req, res, next) => {
 
   //EMAIL CHECK
   let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-  console.log("regexForEmail", regexForEmail.test(email));
 
   if (!regexForEmail.test(email)) {
     return res.status(400).json({
@@ -168,12 +151,22 @@ export const agentLogin = async (req, res, next) => {
       message: "Invalid credentials",
     });
   }
-  const { email: userEmail, firstName, lastName } = checkUser;
+  const { email: userEmail, full_name } = checkUser;
+
   const { accessToken, refreshToken } = await generateJWTToken(
     userEmail,
-    firstName,
-    lastName
+    full_name
   );
+  await prisma.agent.update({
+    where: {
+      id: checkUser?.id,
+    },
+    data: {
+      accessToken,
+      refreshToken,
+    },
+  });
+
   const options = {
     // domain: 'vid-stream-client.vercel.app',
     path: "/",

@@ -14,6 +14,8 @@ router.route("/add-agent").post(
   addAgent
 );
 
-router.route('/login').post(agentLogin)
+
+
+router.route('/agent-login').post(agentLogin)
 
 export default router;
