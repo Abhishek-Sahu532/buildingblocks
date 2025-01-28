@@ -157,12 +157,16 @@ describe("addAgent function", () => {
         mobileNumber: "1234567890",
         state: "Madhya Pradesh",
         area: "MP Nagar",
-        experienceInField: true,
+        experienceInField: "true",
         prevOrgName: "Google",
         totalExp: 3,
       },
       files: {
-        avatar: "./pic.jpeg",
+        avatar: [
+          {
+            path: "/path/to/avatar/image.jpg", // Simulate a file path for the avatar
+          },
+        ],
       },
     };
     res = {
@@ -180,16 +184,13 @@ describe("addAgent function", () => {
       },
     }));
 
-    // prisma.agent.findFirst.mockResolvedValue(null);
-    prisma.agent = {
-      findFirst: jest.fn().mockResolvedValue(null),
-    };
-
     bcrypt.hash.mockResolvedValue("hashedPassword");
     uploadOnCloudinary.mockResolvedValue({ url: "imageurl" });
 
     prisma.agent = {
+      findFirst: jest.fn().mockResolvedValue(null),
       create: jest.fn().mockResolvedValueOnce({
+        id: "1",
         first_name: "Abhi",
         last_name: "Sahu",
         full_name: "Abhi Sahu",
@@ -205,22 +206,6 @@ describe("addAgent function", () => {
         total_exp: 3,
       }),
     };
-
-    // prisma.agent.create.mockResolvedValueOnce({
-    //   first_name: "Abhi",
-    //   last_name: "Sahu",
-    //   full_name: "Abhishek Sahu",
-    //   email: "asahu532@gmail.com",
-    //   agent_profile_pic: "imageurl",
-    //   password: "hashedPassword",
-    //   city: "Bhopal",
-    //   mobile_number: "1234567890",
-    //   state: "Madhya Pradesh",
-    //   local_area: "MP Nagar",
-    //   exp_in_field: true,
-    //   prev_organization_name: "Google",
-    //   total_exp: 3,
-    // });
 
     await addAgent(req, res, next);
     console.log("prisma.agent.create", prisma.agent.create);
@@ -253,8 +238,8 @@ describe("addAgent function", () => {
         id: "1",
         first_name: "Abhi",
         last_name: "Sahu",
-        full_name: "Abhishek Sahu",
-        email: "asahu532@gmail.com",
+        full_name: "Abhi Sahu",
+        email: "test12@gmail.com",
         password: "12345678",
         mobile_number: "1234567890",
         agent_profile_pic: "imageurl",
@@ -269,8 +254,10 @@ describe("addAgent function", () => {
   });
 
   test("should return 500 if any error occurs", async () => {
-    prisma.agent.create.mockRejectedValueOnce(new Error("Server Error"));
-
+    prisma.agent = {
+      findFirst: jest.fn().mockRejectedValueOnce(new Error("Server Error")),
+      create: jest.fn().mockResolvedValueOnce(new Error("Server Error")),
+    };
     await addAgent(req, res, next);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({

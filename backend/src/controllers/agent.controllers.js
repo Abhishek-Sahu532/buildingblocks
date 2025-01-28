@@ -21,7 +21,7 @@ export const addAgent = async (req, res, next) => {
       prevOrgName,
       totalExp,
     } = req.body;
-
+    console.log(req.body);
     if (
       !firstName ||
       !lastName ||
@@ -39,12 +39,6 @@ export const addAgent = async (req, res, next) => {
         message: "Please provide the required details",
       });
     }
-
-    // let subject = "Welcome to Our Platform!";
-    // let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
-
-    // await sendEmail(email, subject, message);
-    // return;
     //EMAIL CHECK
     let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
 
@@ -54,6 +48,7 @@ export const addAgent = async (req, res, next) => {
         message: "Provide the valid email",
       });
     }
+    console.log("Before password check");
     //PASSWORD CHECK
     if (password !== confirmPassword) {
       return res.status(400).json({
@@ -61,7 +56,7 @@ export const addAgent = async (req, res, next) => {
         message: "Password and Confirm password does not match",
       });
     }
-
+    console.log("Before checking for the user based on email");
     //checking for the user based on email
     let existingUser = await prisma.agent.findFirst({
       where: {
@@ -75,38 +70,44 @@ export const addAgent = async (req, res, next) => {
           "Please use the another email, this email is taken by other user",
       });
     }
+    console.log("Before hashing the password", existingUser);
     let hashedPassword = await bcrypt.hash(password, 10);
-    // let avatarLocalPath = req.files?.avatar[0]?.path;
+    let avatarLocalPath = req.files?.avatar[0]?.path;
 
-    // if (!avatarLocalPath) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Please attach the picture",
-    //   });
-    // }
-    // let avatar = await uploadOnCloudinary(avatarLocalPath);
+    if (!avatarLocalPath) {
+      return res.status(400).json({
+        success: false,
+        message: "Please attach the picture",
+      });
+    }
 
+    let avatar = await uploadOnCloudinary(avatarLocalPath);
+    console.log("before uploading the image", avatarLocalPath);
     console.log("Before prisma.agent.create");
 
-    let newAgent = await prisma.agent.create({
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-        full_name: `${firstName} ${lastName}`,
-        email: email,
-        password: hashedPassword,
-        agent_profile_pic: 'avatar?.url',
-        mobile_number: mobileNumber,
-        city: city,
-        state: state,
-        local_area: area,
-        exp_in_field: experienceInField == "true" ? true : false,
-        prev_organization_name: prevOrgName,
-        total_exp: Number(totalExp),
-      },
-    });
+    let newAgent = await prisma.agent
+      .create({
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          full_name: `${firstName} ${lastName}`,
+          email: email,
+          password: hashedPassword,
+          agent_profile_pic: avatar?.url,
+          mobile_number: mobileNumber,
+          city: city,
+          state: state,
+          local_area: area,
+          exp_in_field: experienceInField == "true" ? true : false,
+          prev_organization_name: prevOrgName,
+          total_exp: Number(totalExp),
+        },
+      })
+      .catch((error) => {
+        console.log("err", error);
+      });
 
-    console.log("Agent created:", agent);
+    console.log("Agent created:", newAgent);
     // console.log(newAgent)
     //     let subject = "Welcome to Our Platform!";
     //     let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
@@ -118,6 +119,7 @@ export const addAgent = async (req, res, next) => {
       agent: newAgent,
     });
   } catch (error) {
+    console.log("Error", error);
     return res.status(500).json({
       success: false,
       message: error?.message,
