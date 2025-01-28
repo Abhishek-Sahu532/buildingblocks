@@ -1,16 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Img } from "../Components/Img";
-import { Heading } from "../Components/Heading";
-import { Button } from "../Components/Button";
-import { TextArea } from "../Components/TextArea";
-import { Input } from "../Components/Input";
-import { Text } from "../Components/Text";
+import { Typography, Button, TextArea } from "@material-tailwind/react";
 
 export default function ContactUs() {
   return (
     <>
       <Helmet>
+
         <title>Contact-Us</title>
         <meta
           name="description"
@@ -20,63 +16,63 @@ export default function ContactUs() {
       <div className="flex items-center justify-start w-full gap-[100px] overflow-auto bg-gray-50_01">
         <div className="flex flex-col   items-center justify-start w-full gap-11 max-w-[1200px]">
           <div className="flex flex-col items-center justify-start w-full pt-0.5 gap-[15px]">
-            <Heading
+            <Typography
               size="4xl"
               as="h1"
               className="text-4xl tracking-[-1.08px] text-center"
             >
               Get in touch
-            </Heading>
-            <Text as="p" className="text-center">
+            </Typography>
+            <Typography as="p" className="text-center">
               On the other hand, we denounce with righteous indignation and
               dislike men who are so beguiled and demoralized by the charms of
               pleasure of the moment, so blinded by desire, that they cannot
               foresee the pain and trouble.
-            </Text>
+            </Typography>
           </div>
 
 
           <div className="flex  flex-col  md:flex-row justify-center items-center w-full gap-[50px] p-[23px] border-blue_gray-100_01 border border-solid bg-white-A700 rounded-[10px]">
             <div className="flex flex-col   items-center justify-start w-full ml-[25px] gap-10">
               <div className="flex flex-col items-start justify-start w-full pt-[3px] gap-[19px]">
-                <Heading
+                <Typography
                   size="xl"
                   as="h2"
                   className="text-xl tracking-[-0.56px]"
                 >
                   Send a message
-                </Heading>
+                </Typography>
                 <div className="flex flex-col items-center justify-start w-full gap-3">
-                  <Input
+                  <input
                     type="text"
                     name="message"
                     placeholder="Full Name"
                     prefix={
-                      <Img
+                      <img
                         src="images/img_icon_24px_user.svg"
                         alt="icon / 24px / user"
                       />
                     }
                     className='w-full px-3 py-2 rounded border border-solid border-blue_gray-100_01 font-semibold'
                   />
-                  <Input
+                  <input
                     type="email"
                     name="email"
                     placeholder="Email Address"
                     prefix={
-                      <Img
+                      <img
                         src="images/img_icon_24px_email.svg"
                         alt="icon / 24px / email"
                       />
                     }
                     className="w-full gap-3.5 font-semibold border-blue_gray-100_01 border border-solid px-3 py-2 rounded"
                   />
-                  <Input
+                  <input
                     type="number"
                     name="phoneNumber"
                     placeholder="Phone Number"
                     prefix={
-                      <Img
+                      <img
                         src="images/img_icon_20px_call.svg"
                         alt="icon / 24px / call"
                       />
@@ -101,83 +97,83 @@ export default function ContactUs() {
             <div className="flex flex-col items-center justify-start w-[46%] gap-10">
               <div className="flex flex-col items-center justify-start w-[96%] gap-4">
                 <div className="flex flex-col items-start justify-start w-full gap-[3px]">
-                  <Heading
+                  <Typography
                     size="md"
                     as="h3"
                     className="text-md tracking-[-0.40px]"
                   >
                     Office Address
-                  </Heading>
-                  <Heading
+                  </Typography>
+                  <Typography
                     size="s"
                     as="h4"
                     className="text-gray-600_02 font-semibold leading-[180%]"
                   >
                     1421 San Pedro St, Los Angeles, <br />
                     CA 90015
-                  </Heading>
+                  </Typography>
                 </div>
                 <div className="flex flex-col items-center justify-start w-full gap-2.5">
                   <div className="flex flex-row justify-start items-center w-full gap-[13px] py-0.5">
-                    <Img
+                    <img
                       src="images/img_icon_20px_call.svg"
                       alt="icon24pxcall"
                       className="h-6 w-6"
                     />
-                    <Heading
+                    <Typography
                       size="s"
                       as="h5"
                       className="text-sm !text-gray-600_02 !font-semibold"
                     >
                       (123) 456-7890
-                    </Heading>
+                    </Typography>
                   </div>
                   <div className="flex flex-row justify-start items-center w-full gap-3 py-0.5">
-                    <Img
+                    <img
                       src="images/img_icon_24px_email.svg"
                       alt="icon24pxemail"
                       className="h-6 w-6"
                     />
-                    <Heading
+                    <Typography
                       size="s"
                       as="h6"
                       className="text-sm mt-0.5 text-gray-600_02 font-semibold"
                     >
                       info@mail.com
-                    </Heading>
+                    </Typography>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full gap-3">
-                <Heading
+                <Typography
                   size="md"
                   as="h5"
                   className="text-md tracking-[-0.40px]"
                 >
                   Social
-                </Heading>
+                </Typography>
                 <div className="flex flex-row justify-start gap-4">
-                  <Img
+                  <img
                     src="images/img_social_icon_facebook.svg"
                     alt="socialicon_one"
                     className="h-[30px] w-[30px]"
                   />
-                  <Img
+                  <img
                     src="images/img_social_icon_linkedin.svg"
                     alt="socialicon"
                     className="h-[30px] w-[30px]"
                   />
-                  <Img
+                  <img
                     src="images/img_social_icon_twitter.svg"
                     alt="socialicon_five"
                     className="h-[30px] w-[30px]"
                   />
-                  <Img
+                  <img
                     src="images/img_social_icon_youtube.svg"
                     alt="socialicon"
                     className="h-[30px] w-[30px]"
                   />
-                  <Img
+                  <img
                     src="images/img_social_icon_rss.svg"
                     alt="socialiconrss"
                     className="h-[30px] w-[30px]"

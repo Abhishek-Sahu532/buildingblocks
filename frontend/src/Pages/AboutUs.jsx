@@ -1,12 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Button } from "../Components/Button";
-import { Input } from "../Components/Input";
-import { Text } from "../Components/Text";
-import { Heading } from "../Components/Heading";
-import { Img } from "../Components/Img";
+import { Button, Input } from "@material-tailwind/react";
 
-export default function AboutUsPage() {
+export default function AboutUs() {
   const addtionalDetails = [
     {
       imgsrc: "images/img_frame.svg",
@@ -83,43 +79,43 @@ export default function AboutUsPage() {
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-center justify-start w-full gap-[38px] max-w-[1200px]">
               <div className="flex flex-col items-center justify-start w-full gap-4">
-                <Heading
+                <h1
                   size="6xl"
                   as="h1"
                   className="tracking-[-1.08px] text-center"
                 >
                   Reimagining real estate to <br />
                   make it easier to unlock.
-                </Heading>
-                <Text as="p" className="text-center">
+                </h1>
+                <h2 as="p" className="text-center">
                   On the other hand, we denounce with righteous indignation and
                   dislike men who <br />
                   are so beguiled and demoralized by the charms of pleasure of
                   the moment, <br />
                   so blinded by desire, that they cannot foresee the pain and
                   trouble.
-                </Text>
+                </h2>
               </div>
               <div className="flex flex-col items-center justify-start w-full gap-6">
                 <div className="flex flex-row justify-start w-full gap-6">
-                  <Img
+                  <img
                     src="images/img_rectangle_5592.png"
                     alt="image"
                     className="w-[66%] object-cover rounded-[10px]"
                   />
-                  <Img
+                  <img
                     src="images/img_rectangle_5593.png"
                     alt="image_one"
                     className="w-[32%] object-cover rounded-[10px]"
                   />
                 </div>
                 <div className="flex flex-row justify-start w-full gap-6">
-                  <Img
+                  <img
                     src="images/img_rectangle_5595.png"
                     alt="image_two"
                     className="w-[32%] object-cover rounded-[10px]"
                   />
-                  <Img
+                  <img
                     src="images/img_rectangle_5594.png"
                     alt="image_three"
                     className="w-[66%] object-cover rounded-[10px]"
@@ -141,19 +137,18 @@ export default function AboutUsPage() {
                   shape="circle"
                   className="w-[60px]"
                 >
-                  <Img src={link.imgsrc} />
+                  <img src={link.imgsrc} />
                 </Button>
                 <div className="flex flex-col items-start justify-start w-full gap-[13px]">
-                  <Heading size="5xl" as="h2" className="tracking-[-0.92px]">
+                  <h2 size="5xl" as="h2" className="tracking-[-0.92px]">
                     {link.heading1}
-                  </Heading>
-                  <Heading
-                    size="lg"
+                  </h2>
+                  <h3                     size="lg"
                     as="h3"
                     className="!text-blue_gray-600 tracking-[-0.40px]"
                   >
                     {link.heading2}
-                  </Heading>
+                  </h3>
                 </div>
               </div>
             ))}
@@ -163,88 +158,88 @@ export default function AboutUsPage() {
             <div className="flex flex-col lg:flex-row justify-between items-center w-full mx-auto max-w-[1147px]">
               <div className="w-full lg:w-[47%] mx-auto lg:mx-0 lg:mr-8">
                 <div className="flex flex-col items-start justify-start w-full gap-4 lg:gap-[18px]">
-                  <Heading size="4xl" as="h2" className="tracking-[-0.72px]">
+                  <h2 size="4xl" as="h2" className="tracking-[-0.72px]">
                     A note from our founders.
-                  </Heading>
-                  <Text as="p">
+                  </h2>
+                  <h2 as="p">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. In a free hour,
-                  </Text>
+                  </h2>
                 </div>
                 <div className="flex flex-col w-full gap-[30px]">
                   <div className="flex flex-row justify-start items-start w-full gap-[26px]">
                     <div className="flex flex-col items-center justify-start h-[35px] w-[35px]">
-                      <Heading
+                      <h3
                         size="lg"
                         as="h3"
                         className="flex justify-center items-center h-[35px] tracking-[-0.40px] text-center !font-extrabold border-gray-900 border-2 border-solid rounded-[17px]"
                       >
                         1
-                      </Heading>
+                      </h3>
                     </div>
                     <div className="flex flex-col items-start justify-start w-[89%] gap-4">
-                      <Heading size="xl" as="h4" className="tracking-[-0.44px]">
+                      <h4 size="xl" as="h4" className="tracking-[-0.44px]">
                         It all started in 1995
-                      </Heading>
-                      <Text as="p">
+                      </h4>
+                      <h2 as="p">
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. In a free hour, On the other hand,
                         we denounce with righteous indignation and dislike men
                         who are so beguiled and demoralized by the charms of
                         pleasure of the moment.
-                      </Text>
+                      </h2>
                     </div>
                   </div>
                   <div className="flex flex-row justify-start items-start w-full gap-[26px]">
                     <div className="flex flex-col items-center justify-start h-[35px] w-[35px]">
-                      <Heading
+                      <h4
                         size="lg"
                         as="h5"
                         className="flex justify-center items-center h-[35px] tracking-[-0.40px] text-center !font-extrabold border-gray-900 border-2 border-solid rounded-[17px]"
                       >
                         2
-                      </Heading>
+                      </h4>
                     </div>
                     <div className="flex flex-col items-start justify-start w-[89%] gap-4">
-                      <Heading size="xl" as="h6" className="tracking-[-0.44px]">
+                      <h6 size="xl" as="h6" className="tracking-[-0.44px]">
                         Donate launches in 2007
-                      </Heading>
-                      <Text as="p">
+                      </h6>
+                      <h2 as="p">
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. In a free hour, On the other hand,
                         we denounce with righteous indignation and dislike men
                         who are so beguiled and demoralized by the charms of
                         pleasure of the moment.
-                      </Text>
+                      </h2>
                     </div>
                   </div>
                   <div className="flex flex-row justify-start items-start w-full gap-[26px]">
                     <div className="flex flex-col items-center justify-start h-[35px] w-[35px]">
-                      <Heading
+                      <h5
                         size="lg"
                         as="h5"
                         className="flex justify-center items-center h-[35px] tracking-[-0.40px] text-center !font-extrabold border-gray-900 border-2 border-solid rounded-[17px]"
                       >
                         3
-                      </Heading>
+                      </h5>
                     </div>
                     <div className="flex flex-col items-center justify-start w-[89%] pt-[3px] gap-[13px]">
-                      <Heading size="xl" as="h5" className="tracking-[-0.44px]">
+                      <h5 size="xl" as="h5" className="tracking-[-0.44px]">
                         Building Blocks holds its initial public offering in
                         2008
-                      </Heading>
-                      <Text as="p">
+                      </h5>
+                      <h2 as="p">
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. In a free hour, On the other hand,
                         we denounce with righteous indignation and dislike men
                         who are so beguiled and demoralized by the charms of
                         pleasure of the moment.
-                      </Text>
+                      </h2>
                     </div>
                   </div>
                 </div>
               </div>
-              <Img
+              <img
                 src="images/img_rectangle_20_589x531.png"
                 alt="image_four"
                 className="w-[47%] object-cover rounded-[10px]"
@@ -254,21 +249,21 @@ export default function AboutUsPage() {
 
           <div className="flex sm:flex-col lg:flex-row justify-end w-full pl-4 pr-4 lg:pl-14 lg:pr-[120px]">
             <div className="flex sm:flex-col  flex-row justify-between items-center w-full mx-auto max-w-[1150px]">
-              <Img
+              <img
                 src="images/img_rectangle_20_589x496.png"
                 alt="image_five"
                 className="w-full lg:w-[44%] object-cover rounded-[10px] mb-8 lg:mb-0 lg:mr-8"
               />
               <div className="flex flex-col items-center lg:items-start justify-start w-full lg:w-[44%] gap-8">
                 <div className="flex flex-col items-start justify-start w-full gap-4 lg:pt-[5px] lg:gap-3.5">
-                  <Heading
+                  <h2
                     size="4xl"
                     as="h2"
                     className="text-4xl lg:text-[2.5rem] font-semibold tracking-[-0.72px]"
                   >
                     Our vision is simple.
-                  </Heading>
-                  <Text as="p" className="text-base lg:text-lg">
+                  </h2>
+                  <h2 as="p" className="text-base lg:text-lg">
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. In a free hour, On the other hand, we
                     denounce with righteous indignation and dislike men who are
@@ -277,23 +272,23 @@ export default function AboutUsPage() {
                     <br />
                     In a free hour, On the other hand, we denounce with
                     righteous indignation and dislike men .
-                  </Text>
+                  </h2>
                 </div>
                 <div className="flex flex-col items-start justify-center w-full gap-2 lg:gap-[9px]">
-                  <Heading
+                  <h3
                     size="lg"
                     as="h3"
                     className="text-lg lg:text-base tracking-[-0.40px]"
                   >
                     Kausar Pial
-                  </Heading>
-                  <Heading
+                  </h3>
+                  <h4
                     size="md"
                     as="h4"
                     className="text-md lg:text-base text-gray-700 font-semibold mb-1"
                   >
                     CEO at Static Mania
-                  </Heading>
+                  </h4>
                 </div>
               </div>
             </div>
@@ -301,13 +296,13 @@ export default function AboutUsPage() {
 
           <div className="flex flex-col items-center justify-start w-full">
             <div className="flex flex-col items-center justify-start w-full gap-8 max-w-[1200px] px-4">
-              <Heading
+              <h2
                 size="4xl"
                 as="h2"
                 className="text-4xl tracking-[-0.72px] text-center"
               >
                 Building Blocks Team members
-              </Heading>
+              </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
                 {teamMemberDetails.map((detail, index) => (
@@ -315,22 +310,22 @@ export default function AboutUsPage() {
                     key={index}
                     className="flex flex-col items-center justify-start gap-4"
                   >
-                    <Img
+                    <img
                       src={detail.imgsrc}
                       alt={detail.name}
                       className="w-[282px] h-[282px] object-cover rounded-[10px]"
                     />
                     <div className="flex flex-col items-start justify-center gap-2">
-                      <Heading
+                      <h3
                         size="lg"
                         as="h3"
                         className="text-lg tracking-[-0.40px]"
                       >
                         {detail.name}
-                      </Heading>
-                      <Text as="p" className="mb-0.5">
+                      </h3>
+                      <h2 as="p" className="mb-0.5">
                         {detail.designation}
-                      </Text>
+                      </h2>
                     </div>
                   </div>
                 ))}
@@ -343,18 +338,18 @@ export default function AboutUsPage() {
             <div className="flex flex-col items-center justify-start w-full gap-8 max-w-[1200px]">
               <div className="flex flex-col items-center justify-start w-full gap-8">
                 <div className="flex flex-row justify-between items-center w-full">
-                  <Heading
+                  <h2
                     size="4xl"
                     as="h2"
                     className="!text-white-A700 text-4xl tracking-[-0.72px] "
                   >
                     News & Consult
-                  </Heading>
+                  </h2>
                   <div className="flex flex-row justify-start items-center gap-2">
-                    <Heading size="md" as="h3" className="mt-1 text-orange-700">
+                    <h3 size="md" as="h3" className="mt-1 text-orange-700">
                       Explore All
-                    </Heading>
-                    <Img
+                    </h3>
+                    <img
                       src="images/img_icon_24px_v.svg"
                       alt="icon24pxv_one"
                       className="h-6 w-6"
@@ -368,28 +363,27 @@ export default function AboutUsPage() {
                       key={index}
                       className="flex flex-col items-center justify-start w-full lg:w-[32%] gap-6"
                     >
-                      <Img
+                      <img
                         src={post.imgsrc}
                         alt="image"
                         className="w-full object-cover rounded-[10px]"
                       />
                       <div className="flex flex-col items-center justify-start w-full gap-[23px]">
-                        <Heading
-                          size="2xl"
+                        <h4                          size="2xl"
                           as="h4"
                           className="!text-white-A700 text-2xl tracking-[-0.48px]"
                         >
                           {post.blogSubject}
-                        </Heading>
+                        </h4>
                         <div className="flex flex-row justify-start items-center w-full gap-2">
-                          <Heading
+                          <h5
                             size="md"
                             as="h5"
                             className="mt-px !text-deep_orange-400"
                           >
                             Read the Article
-                          </Heading>
-                          <Img
+                          </h5>
+                          <img
                             src="images/img_icon_24px_v_deep_orange_400.svg"
                             alt="read_the"
                             className="h-6 w-6"
@@ -403,17 +397,17 @@ export default function AboutUsPage() {
 
               <div className="flex flex-col items-center justify-start w-full gap-8 p-6 lg:p-10 bg-gray-400_01 rounded-lg">
                 <div className="flex flex-col items-center justify-start w-full lg:w-[54%] gap-4">
-                  <Heading
+                  <h3
                     size="3xl"
                     as="h3"
                     className="text-3xl tracking-[-0.56px]"
                   >
                     For Recent Update, News.
-                  </Heading>
-                  <Text as="p" className="text-gray-900 text-center">
+                  </h3>
+                  <h2 as="p" className="text-gray-900 text-center">
                     We helps businesses customize, automate and scale up their
                     ad production and delivery.
-                  </Text>
+                  </h2>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-center w-full lg:w-[54%] gap-4">
                   <Input

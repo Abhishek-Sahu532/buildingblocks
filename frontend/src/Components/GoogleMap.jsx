@@ -57,4 +57,4 @@ const GoogleMap = ({
   );
 };
 
-export { GoogleMap };
+export default  GoogleMap ;

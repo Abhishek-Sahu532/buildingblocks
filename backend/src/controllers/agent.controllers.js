@@ -6,6 +6,7 @@ import { generateJWTToken } from "../utils/generateJWTToken.js";
 
 export const addAgent = async (req, res, next) => {
   try {
+    console.log("Inside addAgent");
     const {
       firstName,
       lastName,
@@ -22,16 +23,16 @@ export const addAgent = async (req, res, next) => {
     } = req.body;
 
     if (
-      [
-        firstName,
-        lastName,
-        email,
-        password,
-        confirmPassword,
-        city,
-        state,
-        experienceInField,
-      ].some((field) => field.trim == "")
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !city ||
+      !mobileNumber ||
+      !state ||
+      !area ||
+      experienceInField === undefined
     ) {
       return res.status(400).json({
         success: false,
@@ -75,15 +76,17 @@ export const addAgent = async (req, res, next) => {
       });
     }
     let hashedPassword = await bcrypt.hash(password, 10);
-    let avatarLocalPath = req.files?.avatar[0]?.path;
+    // let avatarLocalPath = req.files?.avatar[0]?.path;
 
-    if (!avatarLocalPath) {
-      return res.status(400).json({
-        success: false,
-        message: "Please attach the picture",
-      });
-    }
-    let avatar = await uploadOnCloudinary(avatarLocalPath);
+    // if (!avatarLocalPath) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Please attach the picture",
+    //   });
+    // }
+    // let avatar = await uploadOnCloudinary(avatarLocalPath);
+
+    console.log("Before prisma.agent.create");
 
     let newAgent = await prisma.agent.create({
       data: {
@@ -92,16 +95,18 @@ export const addAgent = async (req, res, next) => {
         full_name: `${firstName} ${lastName}`,
         email: email,
         password: hashedPassword,
-        agent_profile_pic: avatar?.url,
-        mobile_number: Number(mobileNumber),
+        agent_profile_pic: 'avatar?.url',
+        mobile_number: mobileNumber,
         city: city,
         state: state,
         local_area: area,
         exp_in_field: experienceInField == "true" ? true : false,
         prev_organization_name: prevOrgName,
-        total_exp: parseInt(totalExp),
+        total_exp: Number(totalExp),
       },
     });
+
+    console.log("Agent created:", agent);
     // console.log(newAgent)
     //     let subject = "Welcome to Our Platform!";
     //     let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;

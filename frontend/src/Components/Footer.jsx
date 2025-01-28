@@ -1,7 +1,5 @@
+import { Typography } from '@material-tailwind/react'
 import React from 'react'
-import { Img } from "./Img";
-import { Heading } from "./Heading";
-import { Text } from "./Text";
 
 const Footer = () => {
   return (
@@ -10,58 +8,58 @@ const Footer = () => {
       <div className="flex flex-row justify-start items-center w-full gap-px">
         <div className="flex flex-col items-center justify-start w-[29%] gap-[43px]">
           <div className="flex flex-row justify-start items-start w-full gap-[11px]">
-            <Img
+            <img
               src="images/img_real_estate_1.svg"
               alt="realestateone"
               className="h-10 w-10"
             />
-            <Text
+            <Typography 
               size="md"
               as="p"
               className="mt-[5px] !text-orange-A700 !font-markoone"
             >
               Relasto
-            </Text>
+            </Typography>
           </div>
           <div className="flex flex-col items-start justify-start w-full gap-7">
-            <Heading as="h6" className="!leading-[160%]">
+            <Typography  as="h6" className="!leading-[160%]">
               59 Bervely Hill Ave, Brooklyn Town,
               <br />
               New York, NY 5630, CA, US
-            </Heading>
+            </Typography>
             <div className="flex flex-col items-start justify-center gap-2">
-              <Heading as="h6" className="mt-px">
+              <Typography  as="h6" className="mt-px">
                 +(123) 456-7890
-              </Heading>
-              <Heading as="h6">info@mail.com</Heading>
+              </Typography>
+              <Typography  as="h6">info@mail.com</Typography>
             </div>
             <div className="flex flex-row justify-start w-full gap-3">
               <div className="flex flex-col items-center justify-start h-[30px] w-[30px]">
-                <Img
+                <img  
                   src="images/img_icon_facebook.svg"
                   alt="iconfacebook"
                   className="h-[30px] w-[30px]"
                 />
               </div>
               <div className="flex flex-col items-center justify-start h-[30px] w-[30px]">
-                <Img
+                <img  
                   src="images/img_icon_twitter.svg"
                   alt="icontwitter_one"
                   className="h-[30px] w-[30px]"
                 />
               </div>
-              <Img
+              <img  
                 src="images/img_icon_instragram.svg"
                 alt="iconinstragram"
                 className="h-[30px] w-[30px]"
               />
-              <Img
+              <img  
                 src="images/img_icon_linked_in.svg"
                 alt="iconlinkedin"
                 className="h-[30px] w-[30px]"
               />
               <div className="flex flex-col items-center justify-start h-[30px] w-[30px]">
-                <Img
+                <img  
                   src="images/img_icon_youtube.svg"
                   alt="iconyoutube_one"
                   className="h-[30px] w-[30px]"
@@ -72,72 +70,72 @@ const Footer = () => {
         </div>
         <div className="flex flex-row justify-between items-center w-[72%]">
           <div className="flex flex-col items-start justify-start w-[19%] gap-[15px]">
-            <Heading size="md" as="h6">
+            <Typography  size="md" as="h6">
               Features
-            </Heading>
+            </Typography>
             <div className="flex flex-col items-start justify-start w-full gap-[15px]">
-              <Heading as="h6">Home v1</Heading>
-              <Heading as="h6">Home v2</Heading>
-              <Heading as="h6">About</Heading>
-              <Heading as="h6">Contact</Heading>
-              <Heading as="h6">Search</Heading>
+              <Typography  as="h6">Home v1</Typography>
+              <Typography  as="h6">Home v2</Typography>
+              <Typography  as="h6">About</Typography>
+              <Typography  as="h6">Contact</Typography>
+              <Typography  as="h6">Search</Typography>
             </div>
           </div>
           <div className="flex flex-col items-start justify-start w-[19%] gap-[15px]">
-            <Heading size="md" as="h6">
+            <Typography  size="md" as="h6">
               Information
-            </Heading>
+            </Typography>
             <div className="flex flex-col items-start justify-start w-full pt-[3px] gap-[15px]">
-              <Heading as="h6">Listing v1</Heading>
-              <Heading as="h6">Listing v2</Heading>
-              <Heading as="h6">Property Details</Heading>
-              <Heading as="h6">
+              <Typography  as="h6">Listing v1</Typography>
+              <Typography  as="h6">Listing v2</Typography>
+              <Typography  as="h6">Property Details</Typography>
+              <Typography  as="h6">
                 Agent List
                 <br />
-              </Heading>
-              <Heading as="h6">Agent Profile</Heading>
+              </Typography>
+              <Typography  as="h6">Agent Profile</Typography>
             </div>
           </div>
           <div className="flex flex-col items-start justify-start w-[19%] gap-[15px]">
-            <Heading size="md" as="h6">
+            <Typography  size="md" as="h6">
               Documentation{" "}
-            </Heading>
+            </Typography>
             <div className="flex flex-col items-start justify-center w-full gap-[15px]">
-              <Heading as="h6" className="mt-0.5">
+              <Typography  as="h6" className="mt-0.5">
                 Blog
-              </Heading>
-              <Heading as="h6">FAQ</Heading>
+              </Typography>
+              <Typography  as="h6">FAQ</Typography>
               <a href="#">
-                <Heading as="h6">
+                <Typography  as="h6">
                   Privacy Policy
                   <br />
-                </Heading>
+                </Typography>
               </a>
-              <Heading as="h6">License</Heading>
+              <Typography  as="h6">License</Typography>
             </div>
           </div>
 
   {/**   <div className="flex flex-col items-start justify-start w-[19%] gap-[15px]">
-            <Heading size="md" as="h6">
+            <Typography  size="md" as="h6">
               Others
-            </Heading>
+            </Typography>
             <div className="flex flex-col items-start justify-center w-full gap-[15px]">
               <a href="#" className="mt-0.5">
-                <Heading as="h6">Log in</Heading>
+                <Typography  as="h6">Log in</Typography>
               </a>
-              <Heading as="h6">Enter OTP</Heading>
-              <Heading as="h6">New Password</Heading>
+              <Typography  as="h6">Enter OTP</Typography>
+              <Typography  as="h6">New Password</Typography>
               <a href="#">
-                <Heading as="h6">Reset Password</Heading>
+                <Typography  as="h6">Reset Password</Typography>
               </a>
               <a href="#">
-                <Heading as="h6">Create Account</Heading>
+                <Typography  as="h6">Create Account</Typography>
               </a>
             </div>
           </div>*/}
         </div>
       </div>
-      <Heading as="h6">© 2022. All rights reserved.</Heading>
+      <Typography  as="h6">© 2022. All rights reserved.</Typography>
     </div>
   </footer>
   )

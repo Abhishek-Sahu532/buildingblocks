@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { CloseSVG } from "../assets/images";
-import { Button } from "../Components/Button";
-import { Img } from "../Components/Img";
-import { Heading } from "../Components/Heading";
+import { Button } from "@material-tailwind/react";
 import { RatingBar } from "../Components/RatingBar";
-import { SelectBox } from "../Components/SelectBox";
-import { Input } from "../Components/Input";
+import Select from "react-select";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -67,20 +64,19 @@ export default function AgentListPage() {
           content="Web site created using create-react-app"
         />
       </Helmet>
-
       <div className="flex flex-col items-center justify-start w-full gap-y-8 overflow-auto bg-gray-50_01 p-4 md:p-10">
         <div className="flex flex-col items-center justify-start w-full gap-14">
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-start justify-start w-full pt-5 gap-8 max-w-[1200px]">
-              <Heading
+              <Typography
                 size="4xl"
                 as="h1"
                 className="text-4xl tracking-[-0.72px]"
               >
                 Some Nearby Good Agents
-              </Heading>
+              </Typography>
               <div className="flex flex-row justify-start gap-4">
-                <Input
+                <input
                   name="search"
                   placeholder="Enter your address"
                   value={searchBarValue9}
@@ -94,7 +90,7 @@ export default function AgentListPage() {
                         fillColor="#6e6e6eff"
                       />
                     ) : (
-                      <Img
+                      <img
                         src="images/img_icon_24px_search_gray_600_02.svg"
                         alt="icon / 24px / search"
                         className="cursor-pointer"
@@ -103,9 +99,9 @@ export default function AgentListPage() {
                   }
                   className="w-full md:w-76% gap-[35px] font-semibold border-blue_gray-100_01 border border-solid"
                 />
-                <SelectBox
+                <Select
                   indicator={
-                    <Img
+                    <img
                       src="images/img_arrowdown_gray_600_02.svg"
                       alt="arrow_down"
                     />
@@ -118,7 +114,7 @@ export default function AgentListPage() {
                 <Button
                   size="4xl"
                   rightIcon={
-                    <Img
+                    <img
                       src="images/img_icon_20px_search.svg"
                       alt="icon / 20px / search"
                     />
@@ -138,20 +134,20 @@ export default function AgentListPage() {
                   key={index}
                   className="flex flex-col items-center justify-start"
                 >
-                  <Img
+                  <img
                     src={agent.imgSrc}
                     alt="bruno_fernandes"
                     className="w-full rounded-[10px] object-cover"
                   />
                   <div className="flex flex-col justify-between w-full p-5 rounded-b-[10px] border-blue_gray-100_01 border border-solid bg-white-A700">
                     <div className="flex flex-row justify-between items-center">
-                      <Heading
+                      <Typography
                         size="lg"
                         as="h2"
                         className="text-lg tracking-[-0.40px]"
                       >
                         {agent.name}
-                      </Heading>
+                      </Typography>
                       <div className="flex items-center gap-3.5">
                         <RatingBar
                           value={1}
@@ -159,7 +155,7 @@ export default function AgentListPage() {
                           size={16}
                           className="flex justify-between w-24"
                         />
-                        <Heading as="h3">4.5 review</Heading>
+                        <Typography as="h3">4.5 review</Typography>
                       </div>
 
                       <Button
@@ -218,7 +214,7 @@ export default function AgentListPage() {
                 color="blue_gray_100_02"
                 variant="outline"
                 rightIcon={
-                  <Img
+                  <img
                     src="images/img_icon_16px_arrow_right.svg"
                     alt="icon / 16px / arrow - right"
                   />

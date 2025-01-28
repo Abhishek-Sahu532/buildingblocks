@@ -51,3 +51,11 @@ if apartment -
 
 if independent floor -
     build up area - sq.ft.
+
+
+
+//unit testing
+
+code , test, run using jest
+test runner
+mock up test - like for the payment schedule

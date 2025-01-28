@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -26,52 +26,51 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import {Img} from './Img'
-import {Text} from './Text'
+import SignIn from "./SignIn";
 
 const navListMenuItems = [
   {
     title: "About Us",
     description: "Meet and learn about our dedication",
     icon: UserGroupIcon,
-    to: '/about-us'
+    to: "/about-us",
   },
   {
     title: "Blog",
     description: "Find the perfect solution for your needs.",
     icon: Bars4Icon,
-    to: '/blog'
+    to: "/blog",
   },
   {
     title: "Services",
     description: "Learn how we can help you achieve your goals.",
     icon: SunIcon,
-    to: '/services'
+    to: "/services",
   },
   {
     title: "Support",
     description: "Reach out to us for assistance or inquiries",
     icon: GlobeAmericasIcon,
-    to: '/support'
+    to: "/support",
   },
   {
     title: "Contact",
     description: "Find the perfect solution for your needs.",
     icon: PhoneIcon,
-    to: '/contact-us'
+    to: "/contact-us",
   },
 
   {
     title: "Special Offers",
     description: "Explore limited-time deals and bundles",
     icon: TagIcon,
-    to: '/special-offers'
+    to: "/special-offers",
   },
 ];
 
 function NavListMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const renderItems = navListMenuItems.map(
     ({ icon, title, description, to }, key) => (
       <Link to={to} key={key}>
@@ -199,10 +198,10 @@ function NavList() {
   );
 }
 
-export default function NavbarWithMegaMenu() {
-  const [openNav, setOpenNav] = React.useState(false);
-
-  React.useEffect(() => {
+export default function MainNavbar() {
+  const [openNav, setOpenNav] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
@@ -217,35 +216,59 @@ export default function NavbarWithMegaMenu() {
           href="/"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-        > <Img
-        src="images/img_real_estate_1.svg"
-        alt="realestateone"
-        className="h-10 w-10"
-      />
-      <Text
-        size="md"
-        as="p"
-        className="mt-[5px] !text-orange-A700 !font-markoone"
-      >
-        Relasto
-      </Text>
-                 </Typography>
+        >
+          {" "}
+          <img
+            src="images/img_real_estate_1.svg"
+            alt="realestateone"
+            className="h-10 w-10"
+          />
+          <Typography
+            variant="paragraph"
+            className="mt-[5px] !text-orange-A700 !font-markoone"
+          >
+            Relasto
+          </Typography>
+        </Typography>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Link to="/signin">
-            {" "}
-            <Button variant="text" size="sm" color="blue-gray">
-              Sign In
-            </Button>
-          </Link>
-          <Link to="/signup">
-            {" "}
-            <Button variant="gradient" size="sm">
-              Sign Up
-            </Button>
-          </Link>
+          {/* <Menu placement="bottom-start" allowHover="true">
+            <MenuHandler>
+              <Button className="bg-transparent shadow-none hover:shadow-none text-indigo-200">
+                Sign in
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              <Link to="/agent-signin">
+                <MenuItem>Agent SignIn</MenuItem>
+              </Link>
+              <Link to="/owner-signin">
+                <MenuItem>Owner SignIn</MenuItem>
+              </Link>
+            </MenuList>
+          </Menu> */}
+          <Button className="bg-transparent shadow-none hover:shadow-none text-indigo-200"  onClick={() => setOpen(!open)}  >
+            Sign In
+          </Button>
+
+          <SignIn  open={open} />
+          <Menu placement="bottom-start" allowHover="true">
+            <MenuHandler>
+              <Button className="bg-transparent shadow-none hover:shadow-none text-indigo-200">
+                Sign up
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              <Link to="/agent-signup">
+                <MenuItem>Agent SignUp</MenuItem>
+              </Link>
+              <Link to="/owner-signup">
+                <MenuItem>Owner SignUp</MenuItem>
+              </Link>
+            </MenuList>
+          </Menu>
         </div>
         <IconButton
           variant="text"
@@ -263,18 +286,37 @@ export default function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Link to="/signin">
-            {" "}
-            <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-              Sign In
-            </Button>
-          </Link>
-          <Link to="/signup">
-            {" "}
-            <Button variant="gradient" size="sm" fullWidth>
-              Sign Up
-            </Button>
-          </Link>
+          <Menu placement="bottom-start" allowHover="true">
+            <MenuHandler>
+              <Button className="bg-transparent shadow-none hover:shadow-none text-indigo-200">
+                Sign in
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              <Link to="/agent-signin">
+                <MenuItem>Agent SignIn</MenuItem>
+              </Link>
+              <Link to="/owner-signin">
+                <MenuItem>Owner SignIn</MenuItem>
+              </Link>
+            </MenuList>
+          </Menu>
+
+          <Menu placement="bottom-start" allowHover="true">
+            <MenuHandler>
+              <Button className="bg-transparent shadow-none hover:shadow-none text-indigo-200">
+                Sign up
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              <Link to="/agent-signup">
+                <MenuItem>Agent SignUp</MenuItem>
+              </Link>
+              <Link to="/owner-signup">
+                <MenuItem>Owner SignUp</MenuItem>
+              </Link>
+            </MenuList>
+          </Menu>
         </div>
       </Collapse>
     </Navbar>

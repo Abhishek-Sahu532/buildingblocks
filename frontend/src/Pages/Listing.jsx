@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { CloseSVG } from "../assets/images";
-import { Button } from "../Components/Button";
-import { Img } from "../Components/Img";
-import { GoogleMap } from "../Components/GoogleMap";
-import { SelectBox } from "../Components/SelectBox";
-import { Input } from "../Components/Input";
-import { Heading } from "../Components/Heading";
-import LandingPageCard from "../Components/LandingPageCard";
+import Select from "react-select";
+import { Button } from "@material-tailwind/react";
+import { GoogleMap, LandingPageCard } from "../Components";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -16,19 +12,18 @@ const dropDownOptions = [
 
 const Listing = () => {
   const [searchBarValue8, setSearchBarValue8] = useState("");
-
   return (
     <div className="flex flex-col items-center justify-start w-full gap-[100px] overflow-auto bg-gray-50_01">
       <div className="flex flex-col items-center justify-start w-full gap-[60px]">
         <div className="flex flex-col items-center justify-start w-full gap-y-8 overflow-auto bg-gray-50_01 px-6 lg:px-0 py-12 lg:py-20">
           <div className="max-w-6xl w-full">
             <div className="flex flex-col items-center justify-start w-full gap-y-6">
-              <Heading size="4xl" as="h1" className="tracking-[-0.72px]">
+              <Typography size="4xl" as="h1" className="tracking-[-0.72px]">
                 Find Property
-              </Heading>
+              </Typography>
               <div className="flex flex-col items-center justify-start w-full gap-3 max-w-[1200px]">
                 <div className="flex flex-row justify-between items-center w-full gap-5">
-                  <Input
+                  <input
                     name="search"
                     placeholder="Enter your address"
                     value={searchBarValue8}
@@ -42,7 +37,7 @@ const Listing = () => {
                           fillColor="#626262ff"
                         />
                       ) : (
-                        <Img
+                        <img
                           src="images/img_icon_24px_search_gray_700.svg"
                           alt="icon / 24px / search"
                           className="cursor-pointer"
@@ -51,9 +46,9 @@ const Listing = () => {
                     }
                     className="w-full sm:w-[36%] !text-gray-700 font-semibold border-blue_gray-100_01 border border-solid"
                   />
-                  <SelectBox
+                  <Select
                     indicator={
-                      <Img
+                      <img
                         src="images/img_arrowdown_gray_700.svg"
                         alt="arrow_down"
                       />
@@ -63,9 +58,9 @@ const Listing = () => {
                     options={dropDownOptions}
                     className="w-[9%] gap-px font-bold border-blue_gray-100_01 border border-solid"
                   />
-                  <SelectBox
+                  <Select
                     indicator={
-                      <Img
+                      <img
                         src="images/img_arrowdown_gray_700.svg"
                         alt="arrow_down"
                       />
@@ -75,9 +70,9 @@ const Listing = () => {
                     options={dropDownOptions}
                     className="w-[18%] gap-px font-bold border-blue_gray-100_01 border border-solid"
                   />
-                  <SelectBox
+                  <Select
                     indicator={
-                      <Img
+                      <img
                         src="images/img_arrowdown_gray_700.svg"
                         alt="arrow_down"
                       />
@@ -91,7 +86,7 @@ const Listing = () => {
                     color="white_A700"
                     size="4xl"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_24px_plus.svg"
                         alt="icon / 24px / plus"
                       />
@@ -103,7 +98,7 @@ const Listing = () => {
                   <Button
                     size="4xl"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_20px_search.svg"
                         alt="icon / 20px / search"
                       />
@@ -119,7 +114,7 @@ const Listing = () => {
                     size="md"
                     variant="outline"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_16px_close.svg"
                         alt="icon / 16px / close"
                       />
@@ -133,7 +128,7 @@ const Listing = () => {
                     size="md"
                     variant="outline"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_16px_close.svg"
                         alt="icon / 16px / close"
                       />
@@ -147,7 +142,7 @@ const Listing = () => {
                     size="md"
                     variant="outline"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_16px_close.svg"
                         alt="icon / 16px / close"
                       />
@@ -161,7 +156,7 @@ const Listing = () => {
                     size="md"
                     variant="outline"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_16px_close.svg"
                         alt="icon / 16px / close"
                       />
@@ -175,7 +170,7 @@ const Listing = () => {
                     size="md"
                     variant="outline"
                     rightIcon={
-                      <Img
+                      <img
                         src="images/img_icon_16px_close.svg"
                         alt="icon / 16px / close"
                       />
@@ -191,23 +186,42 @@ const Listing = () => {
         </div>
         <GoogleMap showMarker={false} className="h-[511px] w-full md:w-[32%]" />
         <div className="flex flex-col items-center justify-start w-full">
-        <div className="max-w-[1200px] w-full px-4 lg:px-0 flex flex-row justify-start items-start gap-6">
-        
-          <div className="w-full md:w-[66%] gap-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <LandingPageCard className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_1.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_3.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_4.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_5.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_2.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_1.png" className="flex flex-col items-center justify-start w-full" />
-              <LandingPageCard imageOne="images/img_image_3.png" className="flex flex-col items-center justify-start w-full" />
+          <div className="max-w-[1200px] w-full px-4 lg:px-0 flex flex-row justify-start items-start gap-6">
+            <div className="w-full md:w-[66%] gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <LandingPageCard className="flex flex-col items-center justify-start w-full" />
+                <LandingPageCard
+                  imageOne="images/img_image_1.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_3.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_4.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_5.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_2.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_1.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+                <LandingPageCard
+                  imageOne="images/img_image_3.png"
+                  className="flex flex-col items-center justify-start w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
       </div>
     </div>
   );

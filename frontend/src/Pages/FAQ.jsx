@@ -1,9 +1,6 @@
 import React, {useState} from "react";
 import { Helmet } from "react-helmet";
-import { Text } from "../Components/Text";
-import { Heading } from "../Components/Heading";
-import { Input } from "../Components/Input";
-import { Img } from "../Components/Img";
+import { Typography } from "@material-tailwind/react";
 
 
 export default function FAQPage() {
@@ -20,18 +17,18 @@ export default function FAQPage() {
       </Helmet>
       <div className="flex flex-col items-center justify-start w-full gap-6 p-4">
       <div className="flex flex-col items-center justify-start w-full max-w-[1200px] gap-6">
-        <Heading size="3xl" as="h1" className="tracking-[-0.92px] text-center">
+        <Typography size="3xl" as="h1" className="tracking-[-0.92px] text-center">
           Search Property / Anything
-        </Heading>
+        </Typography>
         <div className="flex flex-col items-center justify-start w-full gap-6">
-          <Input
+          <input
             name="search"
             placeholder="Search Property / Anything"
             value={searchBarValue6}
             onChange={(e) => setSearchBarValue6(e)}
-            prefix={<Img src="images/img_icon_24px_search_gray_600_02.svg" alt="icon / 24px / search" className="cursor-pointer" />}
+            prefix={<img src="images/img_icon_24px_search_gray_600_02.svg" alt="icon / 24px / search" className="cursor-pointer" />}
             suffix={searchBarValue6?.length > 0 && (
-              <Img
+              <img
                 src="images/img_icon_24px_filter.svg"
                 alt="icon / 24px / filter"
                 onClick={() => setSearchBarValue6("")}
@@ -43,55 +40,55 @@ export default function FAQPage() {
           <div className="flex flex-col items-center justify-start w-full gap-6">
             <div className="flex flex-col items-start justify-start w-full gap-6 p-4 border-blue_gray-100_01 border border-solid bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start justify-start gap-6">
-                <Heading size="md" as="h2" className="tracking-[-0.40px]">
+                <Typography size="md" as="h2" className="tracking-[-0.40px]">
                   You're viewing sample results.
-                </Heading>
+                </Typography>
                 <div className="flex flex-col items-start justify-start gap-2">
                   <a href="https://relasto.com" target="_blank" rel="noreferrer">
-                    <Heading as="h3" className="text-gray-600_02">
+                    <Typography as="h3" className="text-gray-600_02">
                       https://relasto.com
-                    </Heading>
+                    </Typography>
                   </a>
-                  <Text size="xs" as="p">
+                  <Typography size="xs" as="p">
                     Ipsum sunt incidunt veniam sint nemo et aut. Vero ut quibusdam
                     autem suscipit culpa perspiciatis. Exercitationem dolorum dolore
                     perferendis praesen…
-                  </Text>
+                  </Typography>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-start justify-start w-full gap-6 p-4 border-blue_gray-100_01 border border-solid bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start justify-start gap-6">
-                <Heading size="md" as="h4" className="tracking-[-0.40px]">
+                <Typography size="md" as="h4" className="tracking-[-0.40px]">
                   Add CMS or Business Hosting and index your site to see real search
                   results!
-                </Heading>
+                </Typography>
                 <div className="flex flex-col items-start justify-start gap-2">
-                  <Heading as="h5" className="text-gray-600_02">
+                  <Typography as="h5" className="text-gray-600_02">
                     https://relasto.com
-                  </Heading>
-                  <Text size="xs" as="p">
+                  </Typography>
+                  <Typography size="xs" as="p">
                     Ipsum sunt incidunt veniam sint nemo et aut. Vero ut quibusdam
                     autem suscipit culpa perspiciatis. Exercitationem dolorum dolore
                     perferendis praesen…
-                  </Text>
+                  </Typography>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-start justify-start w-full gap-6 p-4 border-blue_gray-100_01 border border-solid bg-white-A700 rounded-[10px]">
               <div className="flex flex-col items-start justify-start gap-6">
-                <Heading size="md" as="h6" className="tracking-[-0.40px]">
+                <Typography size="md" as="h6" className="tracking-[-0.40px]">
                   You're viewing sample results.
-                </Heading>
+                </Typography>
                 <div className="flex flex-col items-start justify-start gap-2">
-                  <Heading as="h6" className="text-gray-600_02">
+                  <Typography as="h6" className="text-gray-600_02">
                     https://relasto.com
-                  </Heading>
-                  <Text size="xs" as="p">
+                  </Typography>
+                  <Typography size="xs" as="p">
                     Ipsum sunt incidunt veniam sint nemo et aut. Vero ut quibusdam
                     autem suscipit culpa perspiciatis. Exercitationem dolorum dolore
                     perferendis praesen…
-                  </Text>
+                  </Typography>
                 </div>
               </div>
             </div>
