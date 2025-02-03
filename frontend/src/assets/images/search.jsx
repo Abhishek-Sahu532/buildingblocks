@@ -1,5 +1,4 @@
-import React from "react";
-export const SearchSVG = ({ fillColor = "#000000", className = "", ...props }) => {
+export const SearchSVG = ({ fillColor = '#000000', className = '', ...props }) => {
   return (
     <svg
       fill={fillColor}

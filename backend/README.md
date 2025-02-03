@@ -59,3 +59,7 @@ if independent floor -
 code , test, run using jest
 test runner
 mock up test - like for the payment schedule
+
+//static code analysis
+prettier
+eslint

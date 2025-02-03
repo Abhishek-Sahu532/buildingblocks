@@ -1,10 +1,12 @@
-import React from "react";
-import { Input, Button, Typography } from "@material-tailwind/react";
-import { TabPanel, TabList, Tab, Tabs } from "react-tabs";
+import { Input, Button, Typography, TabsHeader, TabsBody, Tabs, Tab, TabPanel } from '@material-tailwind/react';
+import { useState } from 'react';
+// import { TabPanel, TabList, Tab, Tabs } from 'react-tabs';
 
 const Hero1 = () => {
+  const [activeTab, setActiveTab] = useState('buy');
+  console.log(activeTab);
   return (
-    <div className="flex flex-row  justify-center items-center w-full mx-auto max-w-[1396px]">
+    <div className="flex flex-col md:flex-row lg:flex-row w-full mx-auto max-w-[1396px]">
       <div className="flex flex-col items-center justify-start w-full md:w-[50%] gap-[15px]">
         <div className="flex flex-col items-center justify-start w-full gap-6">
           <Typography variant="h1" className="text-primaryText tracking-[-0.92px] text-center">
@@ -12,91 +14,122 @@ const Hero1 = () => {
             <br />
             {`Where you'll love to live`}
           </Typography>
-          <Typography
-            variant="paragraph"
-            className="text-center text-secondaryText px-2"
-          >
-            We helps businesses customize, automate and scale up their ad
-            production and delivery.
+          <Typography variant="paragraph" className="text-center text-secondaryText px-2">
+            We helps businesses customize, automate and scale up their ad production and delivery.
           </Typography>
         </div>
-        <div className="flex flex-row justify-center w-full p-5 bg-white-A700 rounded-[16px]">
-          <Tabs
-            className="flex flex-col items-center justify-start w-full gap-[38px]"
-            selectedTabClassName="text-white-A700 bg-gray-900 rounded-[10px]"
-            selectedTabPanelClassName="relative tab-panel--selected"
-          >
-            <TabList className="flex flex-row justify-between w-full gap-3 sm:gap-3 sm:text-white p-[9px]">
-              <Tab className="mt-[5px] ml-[62px] text-white-A700 text-lg font-bold px-5 py-2">
+
+        <div className="flex flex-row justify-center w-full p-3 bg-transparent rounded-[16px]">
+          <Tabs value={activeTab} className="w-full p-4 ">
+            <TabsHeader
+              className="bg-transparent flex align-middle justify-evenly"
+              indicatorProps={{
+                className: 'p-3 border shado-md border-primaryText'
+              }}
+            >
+              <Tab
+                value="buy"
+                className="text-lg font-semibold p-2 text-primaryText"
+                onClick={() => setActiveTab('buy')}
+              >
                 Buy
               </Tab>
-              <Tab className="text-gray-900 text-lg font-bold  px-5 py-2">
+              <Tab
+                value="sell"
+                className="text-lg font-semibold p-2  text-primaryText"
+                onClick={() => setActiveTab('sell')}
+              >
                 Sell
               </Tab>
-              <Tab className="mr-[57px] text-gray-900 text-lg font-bold  px-5 py-2">
+              <Tab
+                value="rent"
+                className="text-lg font-semibold p-2  text-primaryText"
+                onClick={() => setActiveTab('rent')}
+              >
                 Rent
               </Tab>
-            </TabList>
-            
-            {[...Array(3)].map((_, index) => (
-              <TabPanel
-                key={`tab-panel${index}`}
-                className="items-center w-full absolute"
-              >
+            </TabsHeader>
+
+            <TabsBody>
+              <TabPanel value="buy" className="items-center w-full absolute">
                 <div className="flex flex-col items-center justify-start w-full">
                   <div className="flex flex-col items-center justify-start w-full gap-6">
                     <div className="flex flex-col items-center justify-start w-full gap-5">
                       <Input
-                        name="city"
+                        label="City"
                         placeholder="City/Street"
-                        suffix={
-                          <img
-                            src="images/img_icon_20px_map.svg"
-                            alt="icon / 20px / map"
-                          />
-                        }
-                        className="w-full gap-[35px] font-semibold border-blue_gray-100_01 border border-solid"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
                       />
                       <Input
-                        name="icon20pxupdowna"
+                        label="Property Type"
                         placeholder="Property Type"
-                        suffix={
-                          <img
-                            src="images/img_icon_20px_updown_arrow.svg"
-                            alt="icon / 20px / up-down arrow"
-                          />
-                        }
-                        className="w-full gap-[35px] font-semibold border-blue_gray-100_01 border border-solid"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
                       />
                       <Input
-                        name="price"
+                        label="Price"
                         placeholder="Price Range"
-                        suffix={
-                          <img
-                            src="images/img_icon_20px_updown_arrow.svg"
-                            alt="icon / 20px / up-down arrow"
-                          />
-                        }
-                        className="w-full gap-[35px] font-semibold border-blue_gray-100_01 border border-solid"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
                       />
                     </div>
-                    <Button  className="w-full font-bold text-white">
-                      Search
-                    </Button>
+                    <Button className="w-full font-bold text-white bg-primaryText">Search</Button>
                   </div>
                 </div>
               </TabPanel>
-            ))}
+              <TabPanel value="sell" className="items-center w-full absolute">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex flex-col items-center justify-start w-full gap-6">
+                    <div className="flex flex-col items-center justify-start w-full gap-5">
+                      <Input
+                        label="City"
+                        placeholder="City/Street"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                      <Input
+                        label="Property Type"
+                        placeholder="Property Type"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                      <Input
+                        label="Price"
+                        placeholder="Price Range"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                    </div>
+                    <Button className="w-full font-bold text-white bg-primaryText">Search</Button>
+                  </div>
+                </div>
+              </TabPanel>
+              <TabPanel value="rent" className="items-center w-full absolute">
+                <div className="flex flex-col items-center justify-start w-full">
+                  <div className="flex flex-col items-center justify-start w-full gap-6">
+                    <div className="flex flex-col items-center justify-start w-full gap-5">
+                      <Input
+                        label="City"
+                        placeholder="City/Street"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                      <Input
+                        label="Property Type"
+                        placeholder="Property Type"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                      <Input
+                        label="Price"
+                        placeholder="Price Range"
+                        className="appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none w-full bg-transparent border border-primaryText"
+                      />
+                    </div>
+                    <Button className="w-full font-bold text-white bg-primaryText">Search</Button>
+                  </div>
+                </div>
+              </TabPanel>
+            </TabsBody>
           </Tabs>
         </div>
       </div>
 
-      <div className="flex justify-center items-center w-full md:w-[50%]">
-        <img
-          src="images/img_image.png"
-          alt="image_one"
-          className="w-full md:max-w-[89%] object-cover"
-        />
+      <div className="flex justify-center items-center w-full md:w-[60%]">
+        <img src="images/img_image.png" alt="image_one" className="w-full md:max-w-[89%] object-cover" />
       </div>
     </div>
   );

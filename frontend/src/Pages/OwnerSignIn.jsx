@@ -1,11 +1,9 @@
-import { Input, Button } from "@material-tailwind/react";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Input, Button } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 const OwnerSignIn = () => {
   return (
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
-      
       <div className="flex flex-col gap-4 p-6">
         <div className="relative h-11 w-full min-w-[200px]">
           <div className="relative h-11 w-full min-w-[200px]">
@@ -40,7 +38,7 @@ const OwnerSignIn = () => {
           Sign In
         </Button>
         <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
-          Don't have an account?
+          Don&apos;t have an account?
           <Link
             to="/signup"
             className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900"

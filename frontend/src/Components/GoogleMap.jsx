@@ -1,48 +1,58 @@
-import React from "react";
-import { Wrapper } from "@googlemaps/react-wrapper";
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Wrapper } from '@googlemaps/react-wrapper';
 
 const Map = ({ center, zoom, markers, ...props }) => {
-  const ref = React.useRef(null);
+  const ref = useRef(null);
   const [map, setMap] = React.useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current, { center, zoom }));
     }
   }, [ref, map, center, zoom]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     markers?.forEach((markerData) => {
       const newMarker = new window.google.maps.Marker();
       newMarker.setOptions({
         position: markerData,
         map: map,
-        title: "Hello World!",
+        title: 'Hello World!'
       });
     });
   }, [map, markers]);
 
   return <div ref={ref} id="map" {...props} />;
 };
+Map.propTypes = {
+  center: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired
+  }).isRequired,
+  zoom: PropTypes.number.isRequired,
+  markers: PropTypes.arrayOf(
+    PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired
+    })
+  )
+};
 
-const GoogleMap = ({
-  children,
-  showMarker = false,
-  className,
-  ...restProps
-}) => {
-  const [currentLocation, setLocation] = React.useState({ lat: 0, lng: 0 });
+// const GoogleMap = ({ children, showMarker = false, className, ...restProps }) => {
 
-  React.useEffect(() => {
-    navigator?.geolocation.getCurrentPosition(
-      ({ coords: { latitude: lat, longitude: lng } }) => {
-        const pos = { lat, lng };
-        setLocation(pos);
-      }
-    );
+const GoogleMap = ({ showMarker = false, className, ...restProps }) => {
+  // const GoogleMap = ({ children, showMarker = false, className, ...restProps }) => {
+  const [currentLocation, setLocation] = useState({ lat: 0, lng: 0 });
+
+  useEffect(() => {
+    navigator?.geolocation.getCurrentPosition(({ coords: { latitude: lat, longitude: lng } }) => {
+      const pos = { lat, lng };
+      setLocation(pos);
+    });
   }, []);
 
-  const apiKey = import.meta.env?.VITE_GOOGLE_MAP_ID || "";
+  const apiKey = import.meta.env?.VITE_GOOGLE_MAP_ID || '';
 
   return (
     <Wrapper apiKey={apiKey}>
@@ -57,4 +67,10 @@ const GoogleMap = ({
   );
 };
 
-export default  GoogleMap ;
+GoogleMap.propTypes = {
+  children: PropTypes.node,
+  showMarker: PropTypes.bool,
+  className: PropTypes.string
+};
+
+export default GoogleMap;

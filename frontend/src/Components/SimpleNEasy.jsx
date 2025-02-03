@@ -1,5 +1,4 @@
-import React from "react";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, Typography } from '@material-tailwind/react';
 
 const SimpleNEasy = () => {
   return (
@@ -7,50 +6,25 @@ const SimpleNEasy = () => {
       <div className="flex flex-col items-center gap-6 justify-start w-full gap-y-8 md:gap-y-0 md:flex-row">
         <div className="flex flex-col  items-start justify-start w-full md:w-[47%] gap-y-8 md:gap-y-0 md:gap-x-8">
           <div className="flex flex-col items-center justify-start gap-y-4">
-            <Typography
-              variant="h2"
-              className="tracking-[-0.72px] text-center md:text-left"
-            >
+            <Typography variant="h2" className="tracking-[-0.72px] text-center md:text-left">
               Simple & easy way to find your dream Appointment
             </Typography>
-            <Typography
-              variant="paragraph"
-              className="text-center md:text-left"
-            >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. In a free hour, when our power of choice is untrammelled
-              and when nothing prevents our being able to do what we like best,
-              every pleasure is to be welcomed.
+            <Typography variant="paragraph" className="text-center md:text-left">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. In a free hour, when our power
+              of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure
+              is to be welcomed.
             </Typography>
           </div>
-          <Button className="font-semibold min-w-[138px] mx-auto md:mx-0 mt-4 text-white">
-            Get Started
-          </Button>
+          <Button className="font-semibold min-w-[138px] mx-auto md:mx-0 mt-4 text-white">Get Started</Button>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center w-full md:w-[47%] gap-4 md:gap-8">
           <div className="flex flex-col items-center justify-start w-full md:w-[49%] gap-4">
-            <img
-              src="images/img_rectangle_18.png"
-              alt="image_two"
-              className="w-full object-cover rounded-[10px]"
-            />
-            <img
-              src="images/img_rectangle_21.png"
-              alt="image_three"
-              className="w-full object-cover rounded-[10px]"
-            />
+            <img src="images/img_rectangle_18.png" alt="image_two" className="w-full object-cover rounded-[10px]" />
+            <img src="images/img_rectangle_21.png" alt="image_three" className="w-full object-cover rounded-[10px]" />
           </div>
           <div className="flex flex-col items-center justify-start w-full md:w-[49%] gap-4">
-            <img
-              src="images/img_rectangle_19.png"
-              alt="image_four"
-              className="w-full object-cover rounded-[10px]"
-            />
-            <img
-              src="images/img_rectangle_20.png"
-              alt="image_five"
-              className="w-full object-cover rounded-[10px]"
-            />
+            <img src="images/img_rectangle_19.png" alt="image_four" className="w-full object-cover rounded-[10px]" />
+            <img src="images/img_rectangle_20.png" alt="image_five" className="w-full object-cover rounded-[10px]" />
           </div>
         </div>
       </div>
@@ -64,53 +38,35 @@ const SimpleNEasy = () => {
 
         <div className="flex flex-col items-start justify-start w-full md:w-[44%] gap-y-8 md:gap-y-0 md:gap-x-8">
           <div className="flex flex-col items-center justify-start w-full gap-y-4">
-            <Typography
-              variant="h3"
-              className="tracking-[-0.72px] text-center md:text-left"
-            >
+            <Typography variant="h3" className="tracking-[-0.72px] text-center md:text-left">
               Best rated host on popular rental sites
             </Typography>
             <Typography variant="paragraph" className="text-center md:text-left">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. In a free hour, when our power of choice is
-              untrammelled.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. In a free hour, when our power
+              of choice is untrammelled.
             </Typography>
           </div>
           <div className="flex flex-col items-center justify-start w-full gap-3">
             <div className="flex flex-row justify-start items-center w-full gap-3.5 py-0.5">
-              <img
-                src="images/img_icon_check.svg"
-                alt="iconcheck_one"
-                className="h-6 w-6"
-              />
+              <img src="images/img_icon_check.svg" alt="iconcheck_one" className="h-6 w-6" />
               <Typography variant="h4" className="!font-semibold">
                 Find excellent deals
               </Typography>
             </div>
             <div className="flex flex-row justify-start items-center w-full gap-3.5">
-              <img
-                src="images/img_icon_check.svg"
-                alt="iconcheck_three"
-                className="h-6 w-6"
-              />
+              <img src="images/img_icon_check.svg" alt="iconcheck_three" className="h-6 w-6" />
               <Typography variant="h5" className="mt-[5px] !font-semibold">
                 Friendly host & Fast support
               </Typography>
             </div>
             <div className="flex flex-row justify-start items-center w-full gap-3.5">
-              <img
-                src="images/img_icon_check.svg"
-                alt="iconcheck_five"
-                className="h-6 w-6"
-              />
+              <img src="images/img_icon_check.svg" alt="iconcheck_five" className="h-6 w-6" />
               <Typography variant="h6" className="mt-[5px] !font-semibold">
                 Secure payment system
               </Typography>
             </div>
           </div>
-          <Button className="font-semibold min-w-[134px] mx-auto md:mx-0 text-white mt-5">
-            Learn more
-          </Button>
+          <Button className="font-semibold min-w-[134px] mx-auto md:mx-0 text-white mt-5">Learn more</Button>
         </div>
       </div>
     </div>

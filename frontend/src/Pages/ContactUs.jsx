@@ -1,82 +1,52 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { Typography, Button, TextArea } from "@material-tailwind/react";
+import { Helmet } from 'react-helmet';
+import { Typography, Button, TextArea, Input } from '@material-tailwind/react';
 
 export default function ContactUs() {
   return (
     <>
       <Helmet>
-
         <title>Contact-Us</title>
-        <meta
-          name="description"
-          content="Web site created using create-react-app"
-        />
+        <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
       <div className="flex items-center justify-start w-full gap-[100px] overflow-auto bg-gray-50_01">
         <div className="flex flex-col   items-center justify-start w-full gap-11 max-w-[1200px]">
           <div className="flex flex-col items-center justify-start w-full pt-0.5 gap-[15px]">
-            <Typography
-              size="4xl"
-              as="h1"
-              className="text-4xl tracking-[-1.08px] text-center"
-            >
+            <Typography size="4xl" variant="h1" className="text-4xl tracking-[-1.08px] text-center">
               Get in touch
             </Typography>
-            <Typography as="p" className="text-center">
-              On the other hand, we denounce with righteous indignation and
-              dislike men who are so beguiled and demoralized by the charms of
-              pleasure of the moment, so blinded by desire, that they cannot
-              foresee the pain and trouble.
+            <Typography variant="p" className="text-center">
+              On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+              demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the
+              pain and trouble.
             </Typography>
           </div>
-
 
           <div className="flex  flex-col  md:flex-row justify-center items-center w-full gap-[50px] p-[23px] border-blue_gray-100_01 border border-solid bg-white-A700 rounded-[10px]">
             <div className="flex flex-col   items-center justify-start w-full ml-[25px] gap-10">
               <div className="flex flex-col items-start justify-start w-full pt-[3px] gap-[19px]">
-                <Typography
-                  size="xl"
-                  as="h2"
-                  className="text-xl tracking-[-0.56px]"
-                >
+                <Typography variant="h2" className="text-xl tracking-[-0.56px]">
                   Send a message
                 </Typography>
                 <div className="flex flex-col items-center justify-start w-full gap-3">
-                  <input
+                  <Input
                     type="text"
                     name="message"
                     placeholder="Full Name"
-                    prefix={
-                      <img
-                        src="images/img_icon_24px_user.svg"
-                        alt="icon / 24px / user"
-                      />
-                    }
-                    className='w-full px-3 py-2 rounded border border-solid border-blue_gray-100_01 font-semibold'
+                    prefix={<img src="images/img_icon_24px_user.svg" alt="icon / 24px / user" />}
+                    className="w-full px-3 py-2 rounded border border-solid border-blue_gray-100_01 font-semibold"
                   />
-                  <input
+                  <Input
                     type="email"
                     name="email"
                     placeholder="Email Address"
-                    prefix={
-                      <img
-                        src="images/img_icon_24px_email.svg"
-                        alt="icon / 24px / email"
-                      />
-                    }
+                    prefix={<img src="images/img_icon_24px_email.svg" alt="icon / 24px / email" />}
                     className="w-full gap-3.5 font-semibold border-blue_gray-100_01 border border-solid px-3 py-2 rounded"
                   />
-                  <input
+                  <Input
                     type="number"
                     name="phoneNumber"
                     placeholder="Phone Number"
-                    prefix={
-                      <img
-                        src="images/img_icon_20px_call.svg"
-                        alt="icon / 24px / call"
-                      />
-                    }
+                    prefix={<img src="images/img_icon_20px_call.svg" alt="icon / 24px / call" />}
                     className="w-full gap-3.5 font-semibold border-blue_gray-100_01 border border-solid px-3 py-2 rounded"
                   />
                   <TextArea
@@ -86,10 +56,7 @@ export default function ContactUs() {
                   />
                 </div>
               </div>
-              <Button
-                size="2xl"
-                className="text-2xl w-full font-semibold bg-blue-500 text-white px-3 py-2 rounded"
-              >
+              <Button size="2xl" className="text-2xl w-full font-semibold bg-blue-500 text-white px-3 py-2 rounded">
                 Send Request
               </Button>
             </div>
@@ -97,93 +64,43 @@ export default function ContactUs() {
             <div className="flex flex-col items-center justify-start w-[46%] gap-10">
               <div className="flex flex-col items-center justify-start w-[96%] gap-4">
                 <div className="flex flex-col items-start justify-start w-full gap-[3px]">
-                  <Typography
-                    size="md"
-                    as="h3"
-                    className="text-md tracking-[-0.40px]"
-                  >
+                  <Typography size="md" variant="h3" className="text-md tracking-[-0.40px]">
                     Office Address
                   </Typography>
-                  <Typography
-                    size="s"
-                    as="h4"
-                    className="text-gray-600_02 font-semibold leading-[180%]"
-                  >
+                  <Typography size="s" variant="h4" className="text-gray-600_02 font-semibold leading-[180%]">
                     1421 San Pedro St, Los Angeles, <br />
                     CA 90015
                   </Typography>
                 </div>
                 <div className="flex flex-col items-center justify-start w-full gap-2.5">
                   <div className="flex flex-row justify-start items-center w-full gap-[13px] py-0.5">
-                    <img
-                      src="images/img_icon_20px_call.svg"
-                      alt="icon24pxcall"
-                      className="h-6 w-6"
-                    />
-                    <Typography
-                      size="s"
-                      as="h5"
-                      className="text-sm !text-gray-600_02 !font-semibold"
-                    >
+                    <img src="images/img_icon_20px_call.svg" alt="icon24pxcall" className="h-6 w-6" />
+                    <Typography size="s" variant="h5" className="text-sm !text-gray-600_02 !font-semibold">
                       (123) 456-7890
                     </Typography>
                   </div>
                   <div className="flex flex-row justify-start items-center w-full gap-3 py-0.5">
-                    <img
-                      src="images/img_icon_24px_email.svg"
-                      alt="icon24pxemail"
-                      className="h-6 w-6"
-                    />
-                    <Typography
-                      size="s"
-                      as="h6"
-                      className="text-sm mt-0.5 text-gray-600_02 font-semibold"
-                    >
+                    <img src="images/img_icon_24px_email.svg" alt="icon24pxemail" className="h-6 w-6" />
+                    <Typography size="s" variant="h6" className="text-sm mt-0.5 text-gray-600_02 font-semibold">
                       info@mail.com
                     </Typography>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-start justify-start w-full gap-3">
-                <Typography
-                  size="md"
-                  as="h5"
-                  className="text-md tracking-[-0.40px]"
-                >
+                <Typography size="md" variant="h5" className="text-md tracking-[-0.40px]">
                   Social
                 </Typography>
                 <div className="flex flex-row justify-start gap-4">
-                  <img
-                    src="images/img_social_icon_facebook.svg"
-                    alt="socialicon_one"
-                    className="h-[30px] w-[30px]"
-                  />
-                  <img
-                    src="images/img_social_icon_linkedin.svg"
-                    alt="socialicon"
-                    className="h-[30px] w-[30px]"
-                  />
-                  <img
-                    src="images/img_social_icon_twitter.svg"
-                    alt="socialicon_five"
-                    className="h-[30px] w-[30px]"
-                  />
-                  <img
-                    src="images/img_social_icon_youtube.svg"
-                    alt="socialicon"
-                    className="h-[30px] w-[30px]"
-                  />
-                  <img
-                    src="images/img_social_icon_rss.svg"
-                    alt="socialiconrss"
-                    className="h-[30px] w-[30px]"
-                  />
+                  <img src="images/img_social_icon_facebook.svg" alt="socialicon_one" className="h-[30px] w-[30px]" />
+                  <img src="images/img_social_icon_linkedin.svg" alt="socialicon" className="h-[30px] w-[30px]" />
+                  <img src="images/img_social_icon_twitter.svg" alt="socialicon_five" className="h-[30px] w-[30px]" />
+                  <img src="images/img_social_icon_youtube.svg" alt="socialicon" className="h-[30px] w-[30px]" />
+                  <img src="images/img_social_icon_rss.svg" alt="socialiconrss" className="h-[30px] w-[30px]" />
                 </div>
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </>

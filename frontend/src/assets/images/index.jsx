@@ -1,3 +1,3 @@
-import { CloseSVG } from "./close";
-import { SearchSVG } from "./search";
+import { CloseSVG } from './close';
+import { SearchSVG } from './search';
 export { CloseSVG, SearchSVG };

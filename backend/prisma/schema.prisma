@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,35 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   content   String?
-//   published Boolean  @default(false)
-//   author    User     @relation(fields: [authorId], references: [id] , onDelete: Cascade)  //linking the tables
-//   authorId  Int
-// }
-
-//  author    User     @relation(fields: [authorId], references: [id]) //authorId represents the column in local table and references is for the relation's table columm name, then need to link to parent table or other table which we want to connect
-// onDelete: Cascade - this mean when entry delete in user table, so in the post table it will automatically delete the related database in post or parent table
-
-// model Profile {
-//   id     Int     @id @default(autoincrement())
-//   bio    String?
-//   user   User    @relation(fields: [userId], references: [id])
-//   userId Int     @unique
-// }
-
-// model User {
-//   id      Int      @id @default(autoincrement())
-//   email   String   @unique
-//   name    String?
-//   posts   Post[]
-//   profile Profile?
-// }
-
 model Agent {
   id                     String                @id @default(uuid())
   first_name             String
@@ -49,7 +14,7 @@ model Agent {
   full_name              String                @default("")
   email                  String                @unique
   password               String
-  mobile_number          String                 @default("")
+  mobile_number          String
   otp                    Int?
   agent_profile_pic      String
   city                   String
@@ -76,24 +41,24 @@ model AgentAuth {
 
 // Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
 
-model HouseOnwer {
+model HouseOwner {
   id            String           @id @default(uuid())
   fullname      String
-  mobile_number String            @default("")
-  email         String?          @unique
+  mobile_number String
+  email         String           @unique
   address       String
   city          String
   created_at    DateTime         @default(now())
-  auth          HouseOnwerAuth[]
+  auth          HouseOwnerAuth[]
   accessToken   String?          @db.VarChar(300)
   refreshToken  String?          @db.VarChar(300)
 }
 
-model HouseOnwerAuth {
+model HouseOwnerAuth {
   id             String     @id @default(uuid())
   created_at     DateTime   @default(now())
   expires_at     DateTime
-  created_by     HouseOnwer @relation(fields: [house_owner_id], references: [id])
+  created_by     HouseOwner @relation(fields: [house_owner_id], references: [id])
   house_owner_id String
   otp            String
 }
@@ -114,6 +79,7 @@ model ResidentialProperty {
   construction_status ConstructionStatus @default(READY_TO_MOVE)
 }
 
+//will add the bhk details  
 enum PropertyType {
   APARTMENT
   INDEPENDENT_FLOOR

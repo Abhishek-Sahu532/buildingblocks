@@ -1,21 +1,42 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+    amd: true
+  },
+  ignorePatterns: ['node_modules/', 'dist/', 'build/'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
+    'prettier'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
-  rules: {
-    'react/jsx-no-target-blank': 'off',
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-}
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
+  plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
+  rules: {
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'react/react-in-jsx-scope': 'off',
+    'jsx-a11y/anchor-is-valid': 'warn',
+    '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }]
+  },
+  globals: {
+    define: 'readonly'
+  }
+};

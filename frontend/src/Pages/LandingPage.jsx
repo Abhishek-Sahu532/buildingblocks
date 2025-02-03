@@ -1,12 +1,4 @@
-import {
-  Hero1,
-  Services,
-  Feature,
-  FeaturedProperties,
-  SimpleNEasy,
-  Testimonials,
-  NewsNConsult,
-} from "../Components";
+import { Hero1, Services, Feature, FeaturedProperties, SimpleNEasy, Testimonials, NewsNConsult } from '../Components';
 
 const LandingPage = () => {
   return (
