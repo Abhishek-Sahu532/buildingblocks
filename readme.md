@@ -253,3 +253,7 @@ pagespeed insights - for web
 
 will figure it out for local
 npm i sitespeed.io- for local
+
+
+//static site generator
+//mobx- redux alternative

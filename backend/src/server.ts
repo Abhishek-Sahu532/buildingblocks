@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
 import app from "./app.ts";
+import dotenv from "dotenv";
 
-dotenv.config({ path: ".env" });
+dotenv.config();
 
 //HANDLING UNCAUGHT EXCEPTION
 process.on("uncaughtException", (err) => {
@@ -19,6 +19,6 @@ process.on("unhandledRejection", (err: unknown) => {
 });
 
 // connectDatabase();
-const server = app.listen(process.env.PORT || 8080, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`App is connecting to the PORT`, process.env.PORT);
 });

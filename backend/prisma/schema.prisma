@@ -42,16 +42,17 @@ model AgentAuth {
 // Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
 
 model HouseOwner {
-  id            String           @id @default(uuid())
+  id            String @id @default(uuid())
   fullname      String
   mobile_number String
-  email         String           @unique
+  email         String @unique
   address       String
   city          String
-  created_at    DateTime         @default(now())
-  auth          HouseOwnerAuth[]
-  accessToken   String?          @db.VarChar(300)
-  refreshToken  String?          @db.VarChar(300)
+  state         String
+  created_at   DateTime         @default(now())
+  auth         HouseOwnerAuth[]
+  accessToken  String?          @db.VarChar(300)
+  refreshToken String?          @db.VarChar(300)
 }
 
 model HouseOwnerAuth {

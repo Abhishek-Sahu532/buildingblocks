@@ -8,6 +8,13 @@
     "arrowParens": "always",
     "bracketSpacing": true,
       "parser": "flow",
-      "endOfLine": "lf"
-    
+      "endOfLine": "lf",
+      "overrides": [
+        {
+          "files": "*.json",
+          "options": {
+            "parser": "json"
+          }
+        }
+      ]
   }

@@ -69,6 +69,7 @@ export default function AboutUs() {
         <title>About Us</title>
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
+
       <div className="flex flex-col items-center justify-start w-full gap-[100px] bg-white-A700">
         <div className="flex flex-col items-center justify-start w-full gap-[100px]">
           <div className="flex flex-row justify-center w-full">
@@ -88,7 +89,7 @@ export default function AboutUs() {
                 <div className="flex flex-row justify-start w-full gap-6">
                   <img
                     src="images/img_rectangle_5592.png"
-                    alt="image"
+                    alt="main_image"
                     className="w-[66%] object-cover rounded-[10px]"
                   />
                   <img

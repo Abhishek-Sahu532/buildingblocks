@@ -3,7 +3,6 @@ import { addAgent, agentLogin } from "../controllers/agent.controllers.ts";
 import { upload } from "../middlewares/multer.middleware.ts";
 
 const router = Router();
-
 router.route("/add-agent").post(
   upload.fields([
     {

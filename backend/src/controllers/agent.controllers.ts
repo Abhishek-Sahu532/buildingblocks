@@ -18,7 +18,7 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
       mobileNumber,
       state,
       area,
-      experienceInField,
+      experienceInField = false,
       prevOrgName,
       totalExp
     } = req.body;
@@ -31,8 +31,7 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
       !city ||
       !mobileNumber ||
       !state ||
-      !area ||
-      experienceInField === undefined
+      !area
     ) {
       return res.status(400).json({
         success: false,
@@ -68,7 +67,8 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
       });
     }
     let hashedPassword = await bcrypt.hash(password, 10);
-    let avatarLocalPath = req.files?.avatar[0]?.path;
+    console.log("req.files", req.files.avatar[0]?.path);
+    let avatarLocalPath = req.files && req.files.avatar ? req.files.avatar[0]?.path : undefined;
 
     if (!avatarLocalPath) {
       return res.status(400).json({
@@ -76,9 +76,7 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
         message: "Please attach the picture"
       });
     }
-
     let avatar = await uploadOnCloudinary(avatarLocalPath);
-
     if (!avatar) {
       return res.status(500).json({
         success: false,
@@ -86,7 +84,7 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
       });
     }
 
-    let newAgent = await prisma.agent.create({
+    await prisma.agent.create({
       data: {
         first_name: firstName,
         last_name: lastName,
@@ -104,7 +102,6 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
       }
     });
 
-    console.log("Agent created:", newAgent);
     // console.log(newAgent)
     //     let subject = "Welcome to Our Platform!";
     //     let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
@@ -112,8 +109,7 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
     //     await sendEmail(email, subject, message);
     return res.status(200).json({
       success: true,
-      message: "Agent created successfully",
-      agent: newAgent
+      message: "Agent created successfully"
     });
   } catch (error) {
     if (error instanceof Error) {

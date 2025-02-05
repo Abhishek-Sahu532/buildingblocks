@@ -1,96 +1,279 @@
-import { Link } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
+import { Input, Button, Card, CardBody, Typography, Switch } from '@material-tailwind/react';
+import Select from 'react-select';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { registerAgentRequest, registerAgentSuccess, registerAgentFail } from '../redux/Slices';
+import axios from 'axios';
+import { registerAgentRequest, registerAgentSuccess, registerAgentFail } from '../redux/Slices/AgentSlices';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-const AgentSignUp = () => {
+export default function AgentForm() {
+  const { loading, error, registrationSuccess, message } = useSelector((state) => state.agent);
+  const navigate = useNavigate();
+  // console.log(error, registrationSuccess, message);
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    control,
+
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      full_name: '',
+      exp_in_field: false
+    }
+  });
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedState, setSelectedState] = useState(null);
+  const expInField = watch('exp_in_field');
+  const cityOptions = [
+    { value: 'Bhopal', label: 'Bhopal' },
+    { value: 'New York', label: 'New York' },
+    { value: 'Los Angeles', label: 'Los Angeles' },
+    { value: 'Chicago', label: 'Chicago' },
+    { value: 'Houston', label: 'Houston' },
+    { value: 'Miami', label: 'Miami' }
+  ];
+
+  const stateOptions = [
+    { value: 'Madhya Pradesh', label: 'Madhya Pradesh' },
+    { value: 'California', label: 'California' },
+    { value: 'Texas', label: 'Texas' },
+    { value: 'New York', label: 'New York' },
+    { value: 'Florida', label: 'Florida' },
+    { value: 'Illinois', label: 'Illinois' }
+  ];
+
+  const onSubmit = async (data) => {
+    let form = new FormData();
+    form.set('firstName', data.first_name);
+    form.set('lastName', data.last_name);
+    form.set('email', data.email);
+    form.set('password', data.password);
+    form.set('confirmPassword', data.confirmPassword);
+    form.set('mobileNumber', data.mobile_number);
+    form.set('city', selectedCity);
+    form.set('state', selectedState);
+    form.set('area', data.local_area);
+    form.set('experienceInField', data.exp_in_field || false);
+    form.set('prevOrgName', data.prev_organization_name || '');
+    form.set('totalExp', data.total_exp || 0);
+    if (data.avatar) {
+      form.set('avatar', data.avatar[0]);
+    }
+    try {
+      dispatch(registerAgentRequest());
+      const config = {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true
+      };
+      let res = '';
+      if (import.meta.env.VITE_DEV_MODE === 'production') {
+        res = await axios.post(`${import.meta.env.BACKEND_URL}/api/v1/agent/add-agent`, form, config);
+      } else {
+        res = await axios.post(`/api/v1/agent/add-agent`, form, config);
+      }
+      dispatch(registerAgentSuccess(res.data));
+    } catch (error) {
+      // console.log(error?.response.data.message);
+      dispatch(registerAgentFail(error?.response.data.message));
+    }
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    if (registrationSuccess) {
+      toast.success(message || 'Registration Successful!');
+      navigate('/');
+    }
+  }, [error, registrationSuccess, message, navigate]);
   return (
-    <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
-      <h4 className="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-        Sign Up
-      </h4>
-      <p className="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-        Nice to meet you! Enter your details to register.
-      </p>
-      <form className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
-        <div className="flex flex-col gap-6 mb-1">
-          <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-            Your Name
-          </h6>
-          <div className="relative h-11 w-full min-w-[200px]">
-            <input
-              placeholder="name@mail.com"
-              className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+    <Card className="max-w-lg mx-auto my-10 p-6 shadow-lg">
+      <CardBody>
+        <Typography variant="h4" className="text-center mb-4">
+          Agent Registration
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              label="First Name"
+              {...register('first_name', { required: 'First name is required' })}
+              error={!!errors.first_name}
+              className="rounded-lg shadow-md"
             />
-            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all before:content-none after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all after:content-none peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"></label>
+            <Input
+              label="Last Name"
+              {...register('last_name', { required: 'Last name is required' })}
+              error={!!errors.last_name}
+              className="rounded-lg shadow-md"
+            />
           </div>
-          <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-            Your Email
-          </h6>
-          <div className="relative h-11 w-full min-w-[200px]">
-            <input
-              placeholder="name@mail.com"
-              className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            />
-            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all before:content-none after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all after:content-none peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"></label>
-          </div>
-          <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-            Password
-          </h6>
-          <div className="relative h-11 w-full min-w-[200px]">
-            <input
-              type="password"
-              placeholder="********"
-              className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            />
-            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all before:content-none after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all after:content-none peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"></label>
-          </div>
-        </div>
-        <div className="inline-flex items-center">
-          <label className="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3" htmlFor="remember">
-            <input
-              type="checkbox"
-              className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
-              id="remember"
-            />
-            <span className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3.5 w-3.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                stroke="currentColor"
-                strokeWidth="1"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </span>
-          </label>
-          <label className="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor="remember">
-            <p className="flex items-center font-sans text-sm antialiased font-normal leading-normal text-gray-700">
-              I agree the
-              <a href="#" className="font-medium transition-colors hover:text-gray-900">
-                &nbsp;Terms and Conditions
-              </a>
-            </p>
-          </label>
-        </div>
-        <button
-          className="mt-6 block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button"
-        >
-          sign up
-        </button>
-        <p className="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-center text-gray-700">
-          Already have an account?
-          <Link to="/signin" className="font-medium text-gray-900">
-            Sign In
-          </Link>
-        </p>
-      </form>
-    </div>
-  );
-};
 
-export default AgentSignUp;
+          <Input label="Full Name" {...register('full_name')} disabled className="rounded-lg shadow-md" />
+
+          <Input
+            label="Email"
+            type="email"
+            {...register('email', { required: 'Email is required' })}
+            error={!!errors.email}
+            className="rounded-lg shadow-md"
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            {...register('password', { required: 'Password is required' })}
+            error={!!errors.password}
+            className="rounded-lg shadow-md"
+          />
+          <Input
+            label="Confirm Password"
+            type="password"
+            {...register('confirmPassword', { required: 'Confirm Password is required' })}
+            error={!!errors.confirmPassword}
+            className="rounded-lg shadow-md"
+          />
+
+          <Input
+            label="Mobile Number"
+            {...register('mobile_number', { required: 'Mobile number is required' })}
+            error={!!errors.mobile_number}
+            className="rounded-lg shadow-md"
+          />
+
+          <div>
+            <Typography variant="small" className="mb-2">
+              Profile Picture
+            </Typography>
+            <input
+              type="file"
+              accept="image/*"
+              {...register('avatar', {
+                required: 'Avatar is required'
+              })}
+              // onChange={handleProfilePicChange}
+              className="w-full rounded-lg shadow-md border border-gray-300 p-2"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {/* City Dropdown */}
+            <div>
+              <Typography variant="small" className="mb-1">
+                City
+              </Typography>
+              <Controller
+                name="city"
+                control={control}
+                rules={{ required: 'City is required' }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={cityOptions}
+                    placeholder="Select City"
+                    isSearchable
+                    value={cityOptions.find((option) => option.value === field.value)}
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption?.value);
+                      setSelectedCity(selectedOption.value);
+                    }}
+                    className="rounded-lg shadow-md"
+                  />
+                )}
+              />
+              {errors.city && (
+                <Typography variant="small" color="red">
+                  {errors.city.message}
+                </Typography>
+              )}
+            </div>
+
+            {/* State Dropdown */}
+            <div>
+              <Typography variant="small" className="mb-1">
+                State
+              </Typography>
+              <Controller
+                name="state"
+                control={control}
+                rules={{ required: 'State is required' }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={stateOptions}
+                    placeholder="Select State"
+                    isSearchable
+                    value={stateOptions.find((option) => option.value === field.value)}
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption?.value);
+                      setSelectedState(selectedOption.value);
+                    }}
+                    className="rounded-lg shadow-md"
+                  />
+                )}
+              />
+              {errors.state && (
+                <Typography variant="small" color="red">
+                  {errors.state.message}
+                </Typography>
+              )}
+            </div>
+          </div>
+
+          <Input
+            label="Local Area"
+            {...register('local_area', { required: 'Local area is required' })}
+            className="rounded-lg shadow-md"
+          />
+
+          {/* Toggle Experience in Field */}
+          <Switch
+            label="Experience in Field"
+            {...register('exp_in_field')}
+            onChange={(e) => setValue('exp_in_field', e.target.checked)}
+            className="rounded-lg shadow-md"
+          />
+
+          {/* Show additional experience fields only if exp_in_field is true */}
+          {expInField && (
+            <>
+              <Input
+                label="Previous Organization Name"
+                {...register('prev_organization_name', { required: 'Previous organization is required' })}
+                error={!!errors.prev_organization_name}
+                className="rounded-lg shadow-md"
+              />
+
+              <Input
+                label="Total Experience (in years)"
+                type="number"
+                {...register('total_exp', {
+                  required: 'Total experience is required',
+                  min: { value: 0, message: 'Experience cannot be negative' }
+                })}
+                error={!!errors.total_exp}
+                className="rounded-lg shadow-md"
+              />
+              {errors.total_exp && (
+                <Typography variant="small" color="red">
+                  {errors.total_exp.message}
+                </Typography>
+              )}
+            </>
+          )}
+
+          <Button type="submit" fullWidth className="rounded-lg shadow-md">
+            Submit
+          </Button>
+        </form>
+      </CardBody>
+    </Card>
+  );
+}

@@ -3,13 +3,13 @@ import otpGenerator from "otp-generator";
 import { addMinutes } from "date-fns";
 import { generateJWTToken } from "../utils/generateJWTToken.ts";
 import { Request, Response } from "express";
+
 //tested
 export const addOwner = async (req: Request, res: Response) => {
   try {
-    const { fullname, mobile_number, email, address, city } = req.body;
+    const { first_name, last_name, mobile_number, email, address, city, state } = req.body;
     console.log(req.body);
-    if (!fullname || !mobile_number || !email || !address || !city) {
-      console.log("inside if");
+    if (!first_name || !last_name || !mobile_number || !email || !address || !city || !state) {
       return res.status(400).json({
         success: false,
         message: "Please provide the required details"
@@ -18,7 +18,6 @@ export const addOwner = async (req: Request, res: Response) => {
 
     //EMAIL CHECK
     let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    console.log("regexForEmail", regexForEmail.test(email));
 
     if (!regexForEmail.test(email)) {
       return res.status(400).json({
@@ -75,19 +74,19 @@ export const addOwner = async (req: Request, res: Response) => {
     }
 
     //will do mobile number verification
-    const newOwner = await prisma.houseOwner.create({
+    await prisma.houseOwner.create({
       data: {
-        fullname,
+        fullname: `${first_name} ${last_name}`,
         mobile_number,
         email,
         address,
-        city
+        city,
+        state
       }
     });
 
     return res.status(200).json({
       success: true,
-      data: newOwner,
       message: "Owner added successfully"
     });
   } catch (error) {

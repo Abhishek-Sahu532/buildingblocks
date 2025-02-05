@@ -4,5 +4,7 @@ export interface AuthenticatedRequest extends Request {
   user?: {
     id: string;
   };
-  files?: Express.Multer.File[];
+  files?: {
+    avatar?: Express.Multer.File[];
+  };
 }
