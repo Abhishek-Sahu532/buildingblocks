@@ -3,43 +3,61 @@ import { createSlice } from '@reduxjs/toolkit';
 let initialState = {
   loading: false,
   success: false,
+  otpSuccess: false,
+  signInSuccess: false,
+  registrationError: null,
+  signInError: null,
   error: null,
+  otpError: null,
   message: '',
   ownerDetails: {}
 };
 
 const HouseOwnerSlices = createSlice({
   initialState,
-  name: 'houseOnwer',
+  name: 'houseOwner',
   reducers: {
     houseOwnerRegistrationRequest: (state) => {
       state.loading = true;
-      state.error = null;
+      state.registrationError = null;
     },
     houseOwnerRegistrationSuccess: (state, action) => {
       state.loading = false;
-      state.error = null;
+      state.registrationError = null;
       state.success = true;
       state.message = action.payload;
     },
     houseOwnerRegistrationFail: (state, action) => {
       state.loading = false;
       state.success = false;
-      state.error = action.payload;
+      state.registrationError = action.payload;
     },
-    houseOwnerSignUpRequest: (state) => {
+    houseOwnerSignInRequest: (state) => {
       state.loading = true;
     },
-    houseOwnerSignUpSuccess: (state, action) => {
+    houseOwnerSignInSuccess: (state, action) => {
       state.loading = false;
-      state.success = true;
-      state.message = action.payload;
-      state.ownerDetails = action.payload;
+      state.signInSuccess = true;
+      state.message = action.payload.message;
+      state.ownerDetails = {};
     },
-    houseOwnerSignUpFail: (state, action) => {
+    houseOwnerSignInFail: (state, action) => {
       state.loading = false;
-      state.success = false;
-      state.error = action.payload;
+      state.signInSuccess = false;
+      state.message = '';
+      state.signInError = action.payload;
+    },
+    ownerOtpSuccess: (state, action) => {
+      state.loading = false;
+      state.otpSuccess = true;
+      state.ownerDetails = action.payload;
+      state.otpError = null;
+      state.message = action.payload.message;
+    },
+    ownerOtpFail: (state, action) => {
+      state.loading = false;
+      state.otpError = action.payload;
+      state.otpSuccess = false;
     }
   }
 });
@@ -48,9 +66,11 @@ export const {
   houseOwnerRegistrationRequest,
   houseOwnerRegistrationSuccess,
   houseOwnerRegistrationFail,
-  houseOwnerSignUpRequest,
-  houseOwnerSignUpSuccess,
-  houseOwnerSignUpFail
+  houseOwnerSignInRequest,
+  houseOwnerSignInSuccess,
+  houseOwnerSignInFail,
+  ownerOtpSuccess,
+  ownerOtpFail
 } = HouseOwnerSlices.actions;
 
 export default HouseOwnerSlices.reducer;

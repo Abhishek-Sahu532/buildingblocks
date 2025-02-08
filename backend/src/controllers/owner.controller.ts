@@ -103,7 +103,6 @@ export const addOwner = async (req: Request, res: Response) => {
 export const ownerLogin = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
-
     if (!email) {
       return res.status(400).json({
         success: false,
@@ -137,11 +136,25 @@ export const ownerLogin = async (req: Request, res: Response) => {
     });
 
     const expiresAt = addMinutes(new Date(), 15);
-    await prisma.houseOwnerAuth.create({
-      data: {
+    await prisma.houseOwnerAuth.upsert({
+      where: {
+        house_owner_id: user?.id
+      },
+      create: {
         expires_at: expiresAt,
         house_owner_id: user?.id,
         otp: generatedOTP
+      },
+      update: {
+        expires_at: expiresAt,
+        otp: generatedOTP
+      }
+    });
+    await prisma.houseOwnerAuth.deleteMany({
+      where: {
+        expires_at: {
+          lt: new Date()
+        }
       }
     });
     return res.status(200).json({
@@ -161,7 +174,9 @@ export const ownerLogin = async (req: Request, res: Response) => {
 
 export const validateOTP = async (req: Request, res: Response) => {
   try {
-    const userOTP = req.body.otp;
+    const userOTP = req.body.otp.split(",").join("");
+    console.log("userOTP", userOTP);
+
     let userDetails = await prisma.houseOwnerAuth.findFirst({
       where: {
         otp: userOTP
@@ -190,6 +205,7 @@ export const validateOTP = async (req: Request, res: Response) => {
         message: "OTP is expired"
       });
     }
+
     let email: string = userDetails?.created_by?.email;
     let fullname: string = userDetails?.created_by?.fullname;
 
@@ -220,6 +236,8 @@ export const validateOTP = async (req: Request, res: Response) => {
       secure: true,
       sameSite: "none"
     };
+
+    console.log(accessToken, refreshToken);
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)

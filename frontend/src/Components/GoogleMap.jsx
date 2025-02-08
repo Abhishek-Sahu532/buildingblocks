@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper } from '@googlemaps/react-wrapper';
 
 const Map = ({ center, zoom, markers, ...props }) => {
   const ref = useRef(null);
-  const [map, setMap] = React.useState();
+  const [map, setMap] = useState();
 
   useEffect(() => {
     if (ref.current && !map) {

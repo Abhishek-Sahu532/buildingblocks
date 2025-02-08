@@ -54,21 +54,42 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
         message: "Password and Confirm password does not match"
       });
     }
-    //checking for the user based on email
-    let existingUser = await prisma.agent.findFirst({
+    //checking for the existing agent based on email
+    let existingAgent = await prisma.agent.findFirst({
       where: {
-        email: email
+        OR: [{ email: email }, { mobile_number: mobileNumber }]
       }
     });
-    if (existingUser) {
+
+    if (existingAgent) {
       return res.status(400).json({
         success: false,
-        message: "Please use the another email, this email is taken by other user"
+        message: "Please use other mobile number and email id"
+      });
+    }
+
+    //CHECKING FOR THE OWNER BASED ON EMAIL AND MOBILE NUMBER
+    let existingOwner = await prisma.houseOwner.findFirst({
+      where: {
+        OR: [{ email: email }, { mobile_number: mobileNumber }]
+      }
+    });
+
+    if (existingOwner) {
+      return res.status(400).json({
+        success: false,
+        message: "Please use other mobile number and email id"
       });
     }
     let hashedPassword = await bcrypt.hash(password, 10);
+    if (!req.files || !req.files.avatar) {
+      return res.status(400).json({
+        success: false,
+        message: "Please attach the picture"
+      });
+    }
     console.log("req.files", req.files.avatar[0]?.path);
-    let avatarLocalPath = req.files && req.files.avatar ? req.files.avatar[0]?.path : undefined;
+    let avatarLocalPath = req.files.avatar[0]?.path;
 
     if (!avatarLocalPath) {
       return res.status(400).json({
@@ -101,12 +122,13 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
         total_exp: Number(totalExp)
       }
     });
-
+    //SENDING GREETING MAILS
     // console.log(newAgent)
     //     let subject = "Welcome to Our Platform!";
     //     let message = `Hi ${firstName},\n\nThank you for signing up! We're excited to have you on board.\n\nBest Regards,\nThe BuildingBlocks Team`;
 
     //     await sendEmail(email, subject, message);
+
     return res.status(200).json({
       success: true,
       message: "Agent created successfully"
@@ -125,7 +147,6 @@ export const addAgent = async (req: AuthenticatedRequest, res: Response) => {
 export const agentLogin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-
     if (!email?.trim) {
       return res.status(400).json({
         success: false,
@@ -181,6 +202,22 @@ export const agentLogin = async (req: Request, res: Response) => {
       }
     });
 
+    const loggedAgent = await prisma.agent.findUnique({
+      where: {
+        email: userEmail
+      },
+      select: {
+        full_name: true,
+        email: true,
+        mobile_number: true,
+        agent_profile_pic: true,
+        city: true,
+        state: true,
+        local_area: true,
+        exp_in_field: true
+      }
+    });
+
     interface CookieOptions {
       domain?: string;
       path: string;
@@ -195,12 +232,14 @@ export const agentLogin = async (req: Request, res: Response) => {
       secure: true,
       sameSite: "none"
     };
+
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
       .json({
         success: true,
+        data: loggedAgent,
         message: "Login successfully"
       });
   } catch (error) {

@@ -21,9 +21,11 @@ app.use(
 import agentRoutes from "./routes/routes.agent.ts";
 import propertyRoutes from "./routes/routes.property.ts";
 import ownerRoutes from "./routes/routes.owner.ts";
+import authRoutes from "./routes/routes.auth.ts";
 
 app.use("/api/v1/agent", agentRoutes);
 app.use("/api/v1/property", propertyRoutes);
 app.use("/api/v1/owner", ownerRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 export default app;

@@ -13,10 +13,11 @@ import {
   OwnerSignUp,
   AgentSignUp,
   OwnerSignIn,
-  AgentSignIn
+  AgentSignIn,
+  OwnerOTPPage,
+  AddProperty
 } from '../Pages';
 import App from '../App';
-import { SignIn } from '../Components';
 export const router = createBrowserRouter([
   {
     path: '*',
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       },
       {
         path: '/agent-profile',
+        element: <AgentProfile />
+      },
+      {
+        path: '/owner-profile',
         element: <AgentProfile />
       },
       {
@@ -81,7 +86,11 @@ export const router = createBrowserRouter([
     element: <OwnerSignUp />
   },
   {
-    path: '/testing',
-    element: <SignIn />
+    path: '/otp-verification',
+    element: <OwnerOTPPage />
+  },
+  {
+    path: '/add-property',
+    element: <AddProperty />
   }
 ]);

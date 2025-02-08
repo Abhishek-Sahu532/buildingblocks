@@ -65,39 +65,34 @@ export default function AgentListPage() {
         <div className="flex flex-col items-center justify-start w-full gap-14">
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-start justify-start w-full pt-5 gap-8 max-w-[1200px]">
+              {/* Title */}
               <Typography variant="h1" className="text-4xl tracking-[-0.72px]">
                 Some Nearby Good Agents
               </Typography>
-              <div className="flex flex-row justify-start gap-4">
+
+              {/* Search & Filter Section */}
+              <div className="flex flex-wrap items-center gap-4 w-full">
+                {/* Search Input */}
                 <Input
                   name="search"
+                  label="Search"
                   placeholder="Enter your address"
                   value={searchBarValue9}
                   onChange={(e) => setSearchBarValue9(e)}
-                  // suffix={
-                  //   searchBarValue9?.length > 0 ? (
-                  //     <CloseSVG onClick={() => setSearchBarValue9('')} height={24} width={24} fillColor="#6e6e6eff" />
-                  //   ) : (
-                  //     <img
-                  //       src="images/img_icon_24px_search_gray_600_02.svg"
-                  //       alt="icon / 24px / search"
-                  //       className="cursor-pointer"
-                  //     />
-                  //   )
-                  // }
-                  className="w-full md:w-76% gap-[35px] font-semibold border-blue_gray-100_01 border border-solid"
+                  className="w-full md:w-[76%] border border-blue_gray-100_01 font-semibold rounded-md focus:ring-2 focus:ring-primaryText"
                 />
+
+                {/* Select Dropdown */}
                 <Select
                   indicator={<img src="images/img_arrowdown_gray_600_02.svg" alt="arrow_down" />}
-                  name="active"
+                  name="Review"
                   placeholder="Review"
                   options={dropDownOptions}
-                  className="w-[55px] md:w-[12%] gap-px !text-gray-600_02 font-bold border-blue_gray-100_01 border border-solid"
+                  className="w-80 text-gray-600_02 font-bold focus:border-primaryText border-primaryText rounded-md"
                 />
-                <Button
-                  rightIcon={<img src="images/img_icon_20px_search.svg" alt="icon / 20px / search" />}
-                  className="gap-2.5 font-bold min-w-[128px]"
-                >
+
+                {/* Search Button */}
+                <Button variant="text" className="gap-2.5 font-bold border-2 w-44 min-w-28">
                   Search
                 </Button>
               </div>

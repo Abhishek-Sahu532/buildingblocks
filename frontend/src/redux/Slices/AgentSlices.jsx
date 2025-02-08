@@ -5,7 +5,8 @@ let initialState = {
   success: false,
   registrationSuccess: false,
   signInSuccess: false,
-  error: null,
+  registrationError: false,
+  signInError: false,
   message: '',
   agentDetails: {}
 };
@@ -16,32 +17,34 @@ const AgentSlices = createSlice({
   reducers: {
     registerAgentRequest: (state) => {
       state.loading = true;
+      state.registrationError = null;
     },
     registerAgentSuccess: (state, action) => {
       state.loading = false;
-      state.registrationSuccess = true  
+      state.registrationSuccess = true;
       state.message = action.payload.message;
+      state.registrationError = null;
     },
     registerAgentFail: (state, action) => {
       state.loading = false;
       state.registrationSuccess = false;
-      state.error = action.payload;
+      state.registrationError = action.payload;
     },
-    signInRequest: (state) => {
+    agentSignInRequest: (state) => {
       state.loading = true;
       state.signInSuccess = false;
-      state.error = null;
+      state.signInError = null;
     },
-    signInSuccess: (state, action) => {
+    agentSignInSuccess: (state, action) => {
       state.loading = false;
       state.signInSuccess = true;
-      state.error = null;
+      state.signInError = null;
       state.agentDetails = action.payload;
     },
-    signInFailure: (state, action) => {
+    agentSignInFailure: (state, action) => {
       state.loading = false;
       state.agentDetails = {};
-      state.error = action.payload;
+      state.signInError = action.payload;
     }
   }
 });
@@ -50,9 +53,9 @@ export const {
   registerAgentRequest,
   registerAgentSuccess,
   registerAgentFail,
-  signInSuccess,
-  signInFailure,
-  signInRequest
+  agentSignInSuccess,
+  agentSignInFailure,
+  agentSignInRequest
 } = AgentSlices.actions;
 
 export default AgentSlices.reducer;

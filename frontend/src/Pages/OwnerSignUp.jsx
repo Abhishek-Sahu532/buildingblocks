@@ -18,12 +18,7 @@ const OwnerSignUp = () => {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm({
-    defaultValues: {
-      full_name: '',
-      exp_in_field: false
-    }
-  });
+  } = useForm();
 
   const { error, success, message } = useSelector((state) => state.houseOnwer);
 
@@ -69,7 +64,7 @@ const OwnerSignUp = () => {
       };
       let res = '';
       if (import.meta.env.VITE_DEV_MODE === 'production') {
-        res = await axios.post(`${import.meta.env.bBACKEND_URL}/api/v1/owner/signup`, form, config);
+        res = await axios.post(`${import.meta.env.BACKEND_URL}/api/v1/owner/signup`, form, config);
       } else {
         res = await axios.post(`/api/v1/owner/signup`, form, config);
       }

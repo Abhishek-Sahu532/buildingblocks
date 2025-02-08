@@ -12,6 +12,8 @@ import OwnerSignUp from './OwnerSignUp';
 import AgentSignUp from './AgentSignUp';
 import AgentSignIn from './AgentSignIn';
 import OwnerSignIn from './OwnerSignIn';
+import OwnerOTPPage from './OwnerOTPPage';
+import AddProperty from './AddProperty';
 
 export {
   AboutUsPage,
@@ -27,5 +29,7 @@ export {
   OwnerSignUp,
   AgentSignUp,
   OwnerSignIn,
-  AgentSignIn
+  AgentSignIn,
+  OwnerOTPPage,
+  AddProperty
 };

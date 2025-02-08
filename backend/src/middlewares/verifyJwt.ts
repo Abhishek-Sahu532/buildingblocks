@@ -11,21 +11,23 @@ export const verifyJWT = async (req: AuthenticatedRequest, res: Response, next: 
       message: "Token not found"
     });
   }
-  const userDetails = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-  if (!userDetails) {
+  const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  if (!decoded) {
     return res.status(400).json({
       success: false,
       message: "unauthorized access"
     });
   }
 
-  let user = await prisma.agent.findFirst({
+  //FINDING USER IN AGENT TABLE
+  let user = await prisma.agent.findUnique({
     where: {
-      email: userDetails?.email
+      email: decoded?.email
     },
     select: {
       id: true,
       email: true,
+      mobile_number: true,
       full_name: true,
       agent_profile_pic: true,
       city: true,
@@ -34,6 +36,31 @@ export const verifyJWT = async (req: AuthenticatedRequest, res: Response, next: 
       total_exp: true
     }
   });
-  req.user = user;
+
+  if (user) {
+    return (req.user = { ...user, type: "agent" });
+  }
+
+  //FINDING USER IN OWNER TABLE
+  if (!user) {
+    user = await prisma.houseOwner.findUnique({
+      where: {
+        email: decoded?.email
+      },
+      select: {
+        id: true,
+        email: true,
+        fullname: true,
+        city: true,
+        state: true,
+        mobile_number: true,
+        address: true
+      }
+    });
+    if (user) {
+      return (req.user = { ...user, type: "owner" });
+    }
+  }
+  // req.user = user;
   next();
 };

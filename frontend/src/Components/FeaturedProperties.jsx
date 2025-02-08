@@ -4,7 +4,6 @@ import { Button, Typography } from '@material-tailwind/react';
 
 const FeaturedProperties = () => {
   const [selectedTab, setSelectedTab] = useState('Resident');
-  console.log(selectedTab);
   return (
     <div className="flex flex-col items-center justify-start w-full mt-14 px-4 md:px-0 text-primaryText">
       <div className="flex flex-col items-center justify-start max-w-[1200px] w-full gap-8">

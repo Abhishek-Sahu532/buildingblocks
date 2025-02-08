@@ -10,115 +10,112 @@ export default function AgentProfile() {
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
       <div className="flex flex-col items-center justify-start w-full gap-[100px] overflow-auto bg-gray-50_01">
-        <div className="flex flex-col items-center justify-start w-full">
-          <div className="flex flex-col items-center justify-start w-full">
-            <div className="flex flex-col items-center justify-start w-full">
-              <div className="flex flex-row justify-center w-full">
-                <img src="images/img_cover_image.png" alt="coverimage_one" className="w-full object-cover" />
-              </div>
-              <div className="flex flex-col items-center justify-start w-full mt-[-46px] gap-[58px]">
-                <div className="flex flex-row justify-start items-center w-full gap-[30px] max-w-[1160px]">
-                  <img
-                    src="images/img_rectangle_5599_150x150.png"
-                    alt="image"
-                    className="w-[150px] object-cover rounded-[10px]"
-                  />
-                  <div className="flex flex-row justify-between items-center w-[85%]">
-                    <div className="flex flex-row justify-start items-center w-[83%] gap-8">
-                      <div className="flex flex-col items-start justify-start w-[49%] gap-1.5">
-                        <Typography variant="h1" className="tracking-[-0.48px]">
-                          Bruno Fernandes
-                        </Typography>
-                        <div className="flex flex-row justify-start items-center gap-3.5 py-0.5">
-                          <RatingBar value={1} isEditable={true} size={16} className="flex justify-between w-24" />
-                          <Typography variant="h2">4.5 review</Typography>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-center justify-start w-[49%] gap-2">
-                        <div className="flex flex-row justify-start items-center w-full gap-[13px] py-0.5">
-                          <img src="images/img_icon_24px_call.svg" alt="icon24pxcall" className="h-6 w-6" />
-                          <Typography variant="h3">(123) 456-7890</Typography>
-                        </div>
-                        <div className="flex flex-row justify-start items-center w-full gap-3 py-0.5">
-                          <img src="images/img_icon_24px_email_gray_900.svg" alt="icon24pxemail" className="h-6 w-6" />
-                          <Typography variant="h4" className="mt-0.5">
-                            bruno@relasto .com
-                          </Typography>
-                        </div>
-                      </div>
-                    </div>
-                    <Button className="font-semibold min-w-[112px]">Contact</Button>
+        {/* COVER IMAGE */}
+        <div className="flex flex-row justify-center w-full">
+          <img src="images/img_cover_image.png" alt="coverimage_one" className="w-full object-cover" />
+        </div>
+
+        <div className="flex flex-col items-center justify-start w-full mt-[-46px] gap-[58px]">
+          {/* profile details section start */}
+          <div className="flex flex-row justify-start items-center w-full gap-[30px] max-w-[1160px]">
+            <img
+              src="images/img_rectangle_5599_150x150.png"
+              alt="avatar_image"
+              className="w-[150px] object-cover rounded-[10px]"
+            />
+            <div className="flex flex-row justify-between items-center w-[85%]">
+              <div className="flex flex-row justify-start items-center w-[83%] gap-8">
+                <div className="flex flex-col items-start justify-start w-[49%] gap-1.5">
+                  <Typography variant="h1" className="tracking-[-0.48px]">
+                    Bruno Fernandes
+                  </Typography>
+                  <div className="flex flex-row justify-start items-center gap-3.5 py-0.5">
+                    <RatingBar value={1} isEditable={true} size={16} className="flex justify-between w-24" />
+                    <Typography variant="h2">4.5 review</Typography>
                   </div>
                 </div>
-
-                <div className="flex flex-col items-center justify-start w-full gap-12 max-w-[1200px]">
-                  <div className="flex flex-col lg:flex-row justify-start w-full gap-3">
-                    <Button className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">For rent</Button>
-                    <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
-                      For sale
-                    </Button>
-                    <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
-                      About
-                    </Button>
-                    <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
-                      Review
-                    </Button>
+                <div className="flex flex-col items-center justify-start w-[49%] gap-2">
+                  <div className="flex flex-row justify-start items-center w-full gap-[13px] py-0.5">
+                    <img src="images/img_icon_24px_call.svg" alt="icon24pxcall" className="h-6 w-6" />
+                    <Typography variant="h3">(123) 456-7890</Typography>
                   </div>
-                  <div className="justify-center w-full gap-6 grid-cols-1 lg:grid-cols-3 grid min-h-[auto]">
-                    <LandingPageCard className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0" />
-                    <LandingPageCard
-                      imageOne="images/img_image_1.png"
-                      className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
-                    />
-                    <LandingPageCard
-                      imageOne="images/img_image_2.png"
-                      className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
-                    />
-                    <LandingPageCard
-                      imageOne="images/img_image_3.png"
-                      className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
-                    />
-                    <LandingPageCard
-                      imageOne="images/img_image_4.png"
-                      className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
-                    />
-                    <LandingPageCard
-                      imageOne="images/img_image_5.png"
-                      className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
-                    />
-                  </div>
-
-                  {/*pagination */}
-
-                  <div className="flex flex-row justify-between w-full">
-                    <div className="flex flex-row justify-start gap-[5px]">
-                      <Button color="gray_700" variant="outline" className="font-semibold min-w-[48px]">
-                        1
-                      </Button>
-                      <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
-                        2
-                      </Button>
-                      <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
-                        3
-                      </Button>
-                      <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
-                        4
-                      </Button>
-                      <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
-                        5
-                      </Button>
-                    </div>
-                    <Button
-                      color="blue_gray_100_02"
-                      variant="outline"
-                      rightIcon={<img src="images/img_icon_16px_arrow_right.svg" alt="icon / 16px / arrow - right" />}
-                      className="gap-1 font-semibold min-w-[134px]"
-                    >
-                      Next Page
-                    </Button>
+                  <div className="flex flex-row justify-start items-center w-full gap-3 py-0.5">
+                    <img src="images/img_icon_24px_email_gray_900.svg" alt="icon24pxemail" className="h-6 w-6" />
+                    <Typography variant="h4" className="mt-0.5">
+                      bruno@relasto .com
+                    </Typography>
                   </div>
                 </div>
               </div>
+              <Button className="font-semibold min-w-[112px]">Contact</Button>
+            </div>
+          </div>
+          {/* profile details section end */}
+          <div className="flex flex-col items-center justify-start w-full gap-12 max-w-[1200px]">
+            <div className="flex flex-col lg:flex-row justify-start w-full gap-3">
+              <Button className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">For rent</Button>
+              <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
+                For sale
+              </Button>
+              <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
+                About
+              </Button>
+              <Button variant="outline" className="font-semibold min-w-full lg:min-w-[291px] mb-3 lg:mb-0">
+                Review
+              </Button>
+            </div>
+            <div className="justify-center w-full gap-6 grid-cols-1 lg:grid-cols-3 grid min-h-[auto]">
+              <LandingPageCard className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0" />
+              <LandingPageCard
+                imageOne="images/img_image_1.png"
+                className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
+              />
+              <LandingPageCard
+                imageOne="images/img_image_2.png"
+                className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
+              />
+              <LandingPageCard
+                imageOne="images/img_image_3.png"
+                className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
+              />
+              <LandingPageCard
+                imageOne="images/img_image_4.png"
+                className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
+              />
+              <LandingPageCard
+                imageOne="images/img_image_5.png"
+                className="flex flex-col items-center justify-start w-full mb-6 lg:mb-0"
+              />
+            </div>
+
+            {/*pagination */}
+
+            <div className="flex flex-row justify-between w-full">
+              <div className="flex flex-row justify-start gap-[5px]">
+                <Button color="gray_700" variant="outline" className="font-semibold min-w-[48px]">
+                  1
+                </Button>
+                <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
+                  2
+                </Button>
+                <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
+                  3
+                </Button>
+                <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
+                  4
+                </Button>
+                <Button color="blue_gray_100_02" variant="outline" className="font-semibold min-w-[48px]">
+                  5
+                </Button>
+              </div>
+              <Button
+                color="blue_gray_100_02"
+                variant="outline"
+                rightIcon={<img src="images/img_icon_16px_arrow_right.svg" alt="icon / 16px / arrow - right" />}
+                className="gap-1 font-semibold min-w-[134px]"
+              >
+                Next Page
+              </Button>
             </div>
           </div>
         </div>

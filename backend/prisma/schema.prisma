@@ -42,17 +42,17 @@ model AgentAuth {
 // Whenever you update your Prisma schema, you will have to update your database schema using either prisma migrate dev or prisma db push. This will keep your database schema in sync with your Prisma schema. The commands will also regenerate Prisma Client.
 
 model HouseOwner {
-  id            String @id @default(uuid())
+  id            String           @id @default(uuid())
   fullname      String
   mobile_number String
-  email         String @unique
+  email         String           @unique
   address       String
   city          String
   state         String
-  created_at   DateTime         @default(now())
-  auth         HouseOwnerAuth[]
-  accessToken  String?          @db.VarChar(300)
-  refreshToken String?          @db.VarChar(300)
+  created_at    DateTime         @default(now())
+  auth          HouseOwnerAuth[]
+  accessToken   String?          @db.VarChar(300)
+  refreshToken  String?          @db.VarChar(300)
 }
 
 model HouseOwnerAuth {
@@ -60,8 +60,10 @@ model HouseOwnerAuth {
   created_at     DateTime   @default(now())
   expires_at     DateTime
   created_by     HouseOwner @relation(fields: [house_owner_id], references: [id])
-  house_owner_id String
-  otp            String
+  house_owner_id String     @unique
+  otp            String     @unique
+
+  // @@unique([house_owner_id, expires_at])
 }
 
 //resident property
@@ -69,7 +71,7 @@ model ResidentialProperty {
   id                  String             @id @default(uuid())
   owner_name          String
   owner_mobile_number Int                @unique @default(0)
-  looking_to          LookingTO          @default(BUY)
+  looking_to          LookingTO          @default(BUY) 
   locality            String
   property_type       PropertyType       @default(APARTMENT)
   built_up_area       Int                @default(0)
@@ -79,7 +81,7 @@ model ResidentialProperty {
   cost                Int
   construction_status ConstructionStatus @default(READY_TO_MOVE)
 }
-
+//state, city, photos,address
 //will add the bhk details  
 enum PropertyType {
   APARTMENT
