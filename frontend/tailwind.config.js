@@ -14,14 +14,11 @@ export default withMT({
       colors: {
         primaryText: '#000957',
         secondaryText: '#344CB7'
-        // primarybg: "#55567e",
-        // secondarybg: "#9197c3",
-      }
-
-      // fontFamily: {
-      //   sans: ["Helvetica", "Arial", "sans-serif"],
-      //   quicksand: ["Quicksand", "sans-serif"],
-      // },
+      },
+      fontFamily: {
+        raleway: ["Raleway", "Arial", "sans-serif"],
+        quicksand: ["Quicksand", "sans-serif"],
+      },
     }
   },
   plugins: []

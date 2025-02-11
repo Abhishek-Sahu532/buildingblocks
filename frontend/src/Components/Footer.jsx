@@ -76,7 +76,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <Typography variant="h6" className="text-center">
-          © 2025. All rights reserved.
+          © {new Date().getFullYear()}. All rights reserved.
         </Typography>
       </div>
     </footer>

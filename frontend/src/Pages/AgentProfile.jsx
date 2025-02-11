@@ -15,41 +15,65 @@ export default function AgentProfile() {
           <img src="images/img_cover_image.png" alt="coverimage_one" className="w-full object-cover" />
         </div>
 
-        <div className="flex flex-col items-center justify-start w-full mt-[-46px] gap-[58px]">
+        <div className="flex flex-col items-center justify-start w-full mt-[-46px] gap-[58px] text-primaryText">
           {/* profile details section start */}
-          <div className="flex flex-row justify-start items-center w-full gap-[30px] max-w-[1160px]">
-            <img
-              src="images/img_rectangle_5599_150x150.png"
-              alt="avatar_image"
-              className="w-[150px] object-cover rounded-[10px]"
-            />
-            <div className="flex flex-row justify-between items-center w-[85%]">
-              <div className="flex flex-row justify-start items-center w-[83%] gap-8">
-                <div className="flex flex-col items-start justify-start w-[49%] gap-1.5">
-                  <Typography variant="h1" className="tracking-[-0.48px]">
+          <div className="flex flex-col lg:flex-row w-full max-w-[1160px] gap-6 lg:gap-8 p-4">
+            <div className="flex justify-center lg:justify-start">
+              <img
+                src="images/img_rectangle_5599_150x150.png"
+                alt="Profile avatar"
+                className="w-[150px] object-cover rounded-[10px]"
+              />
+            </div>
+
+            <div className="flex flex-col lg:flex-row justify-between items-center w-full gap-6 lg:gap-8">
+              {/* Left content section */}
+              <div className="flex flex-col lg:flex-row items-center lg:items-start w-full lg:w-[83%] gap-4 lg:gap-8">
+                {/* Name and rating section */}
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-[49%] gap-1.5">
+                  <h1 className="text-2xl lg:text-3xl font-bold tracking-[-0.48px] text-center lg:text-left">
                     Bruno Fernandes
-                  </Typography>
-                  <div className="flex flex-row justify-start items-center gap-3.5 py-0.5">
+                  </h1>
+                  <div className="flex flex-row items-center gap-3.5 py-0.5">
                     <RatingBar value={1} isEditable={true} size={16} className="flex justify-between w-24" />
-                    <Typography variant="h2">4.5 review</Typography>
+                    <span className="text-lg lg:text-xl">4.5 review</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-start w-[49%] gap-2">
-                  <div className="flex flex-row justify-start items-center w-full gap-[13px] py-0.5">
-                    <img src="images/img_icon_24px_call.svg" alt="icon24pxcall" className="h-6 w-6" />
-                    <Typography variant="h3">(123) 456-7890</Typography>
+
+                {/* Contact info section */}
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-[49%] gap-2">
+                  <div className="flex flex-row items-center gap-3 py-0.5">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M20 10.999H22C22 5.869 18.127 2 13 2V4C17.024 4 20 6.975 20 10.999Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M13 8C15.103 8 17 9.897 17 12H19C19 8.795 16.301 6 13 6V8ZM16.422 13.443C16.23 13.112 15.922 12.859 15.555 12.726C15.188 12.593 14.78 12.589 14.410 12.715C13.481 13.041 12.604 13.491 11.804 14.054C11.139 14.623 10.557 15.284 10.074 16.016C9.837 16.369 9.723 16.791 9.748 17.215C9.772 17.639 9.933 18.043 10.207 18.367L11.375 19.587C11.43 19.645 11.496 19.69 11.569 19.719C11.642 19.748 11.721 19.76 11.8 19.755C11.879 19.75 11.956 19.728 12.025 19.69C12.095 19.652 12.155 19.599 12.203 19.534L13.864 17.479C13.93 17.397 13.961 17.29 13.948 17.184L13.724 15.849C14.237 15.539 14.791 15.288 15.371 15.102L16.611 15.785C16.683 15.818 16.764 15.83 16.843 15.82C16.922 15.81 16.997 15.778 17.058 15.727L18.903 14.181C18.96 14.133 19.006 14.073 19.036 14.005C19.067 13.936 19.081 13.862 19.078 13.787C19.075 13.712 19.054 13.639 19.018 13.573C18.981 13.507 18.93 13.45 18.868 13.406L16.422 13.443ZM13.5 4V2C7.21 2 2.5 6.71 2.5 13H4.5C4.5 7.813 8.313 4 13.5 4Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    <span className="text-base lg:text-lg">(123) 456-7890</span>
                   </div>
-                  <div className="flex flex-row justify-start items-center w-full gap-3 py-0.5">
-                    <img src="images/img_icon_24px_email_gray_900.svg" alt="icon24pxemail" className="h-6 w-6" />
-                    <Typography variant="h4" className="mt-0.5">
-                      bruno@relasto .com
-                    </Typography>
+                  <div className="flex flex-row items-center gap-3 py-0.5">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    <span className="text-base lg:text-lg">bruno@relasto.com</span>
                   </div>
                 </div>
               </div>
-              <Button className="font-semibold min-w-[112px]">Contact</Button>
+
+              {/* Contact button */}
+              <Button variant='text' className="w-full lg:w-auto px-6 py-2 font-semibold text-primaryText border border-primaryText rounded">
+                Contact
+              </Button>
             </div>
           </div>
+
           {/* profile details section end */}
           <div className="flex flex-col items-center justify-start w-full gap-12 max-w-[1200px]">
             <div className="flex flex-col lg:flex-row justify-start w-full gap-3">

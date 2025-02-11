@@ -24,7 +24,7 @@ export default function LandingPageCard({
   ...props
 }) {
   return (
-    <div {...props} className="text-primaryText min-w-82">
+    <div {...props} className="text-primaryText min-w-96">
       <img
         src={imageOne}
         alt="property_image"

@@ -12,7 +12,7 @@ const dropDownOptions = [
 ];
 
 export default function AgentListPage() {
-  const [searchBarValue9, setSearchBarValue9] = useState('');
+  const [searchBarValue, setSearchBarValue] = useState('');
   const agentList = [
     {
       imgSrc: 'images/img_rectangle_5615.png',
@@ -66,7 +66,7 @@ export default function AgentListPage() {
           <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col items-start justify-start w-full pt-5 gap-8 max-w-[1200px]">
               {/* Title */}
-              <Typography variant="h1" className="text-4xl tracking-[-0.72px]">
+              <Typography variant="h1" className="text-4xl tracking-[-0.72px] text-primaryText">
                 Some Nearby Good Agents
               </Typography>
 
@@ -77,9 +77,9 @@ export default function AgentListPage() {
                   name="search"
                   label="Search"
                   placeholder="Enter your address"
-                  value={searchBarValue9}
-                  onChange={(e) => setSearchBarValue9(e)}
-                  className="w-full md:w-[76%] border border-blue_gray-100_01 font-semibold rounded-md focus:ring-2 focus:ring-primaryText"
+                  value={searchBarValue}
+                  onChange={(e) => setSearchBarValue(e)}
+                  className="w-full  font-semibold rounded-md border border-primaryText placeholder:text-primaryText"
                 />
 
                 {/* Select Dropdown */}
@@ -88,35 +88,46 @@ export default function AgentListPage() {
                   name="Review"
                   placeholder="Review"
                   options={dropDownOptions}
-                  className="w-80 text-gray-600_02 font-bold focus:border-primaryText border-primaryText rounded-md"
+                  className="w-80 text-gray-600_02 font-bold border-primaryText focus:border-primaryText rounded-md"
                 />
 
                 {/* Search Button */}
-                <Button variant="text" className="gap-2.5 font-bold border-2 w-44 min-w-28">
+                <Button variant="text" className="gap-2.5  font-bold border-2 w-full md:w-44 lg:w-44 min-w-28">
                   Search
                 </Button>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-start w-full gap-6">
+          <div className="flex flex-col items-center justify-start w-full gap-6 text-primaryText">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-[1200px]">
               {agentList.map((agent, index) => (
                 <div key={index} className="flex flex-col items-center justify-start">
-                  <img src={agent.imgSrc} alt="bruno_fernandes" className="w-full rounded-[10px] object-cover" />
+                  <img
+                    src={agent.imgSrc}
+                    alt="bruno_fernandes"
+                    className="w-full rounded-[10px] object-cover"
+                    loading="lazy"
+                  />
                   <div className="flex flex-col justify-between w-full p-5 rounded-b-[10px] border-blue_gray-100_01 border border-solid bg-white-A700">
-                    <div className="flex flex-row justify-between items-center">
+                    <div className="flex flex-col justify-between items-center">
                       <Typography variant="h2" className="text-lg tracking-[-0.40px]">
                         {agent.name}
                       </Typography>
-                      <div className="flex items-center gap-3.5">
-                        <RatingBar value={1} isEditable={true} size={16} className="flex justify-between w-24" />
-                        <Typography variant="h3">4.5 review</Typography>
+                      <div className="flex flex-col gap-2">
+                        <div className="flex flex-row items-center gap-3.5">
+                          <RatingBar value={1} isEditable={true} size={16} className="flex justify-between w-24" />
+                          <Typography variant="h6">4.5 review</Typography>
+                        </div>
+                        <div>
+                          <Button
+                            variant="text"
+                            className="w-full font-semibold font-raleway text-md border border-primaryText"
+                          >
+                            View Profile
+                          </Button>
+                        </div>
                       </div>
-
-                      <Button color="blue_gray_100_01" variant="outline" className="w-full font-semibold">
-                        View Profile
-                      </Button>
                     </div>
                   </div>
                 </div>

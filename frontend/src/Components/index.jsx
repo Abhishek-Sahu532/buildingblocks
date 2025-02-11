@@ -11,6 +11,7 @@ import SimpleNEasy from './SimpleNEasy';
 import Testimonials from './Testimonials';
 import SignIn from './SignIn';
 import Hero1 from './Hero1';
+import Pagination from './Pagination';
 
 export {
   Feature,
@@ -25,5 +26,6 @@ export {
   Services,
   SimpleNEasy,
   Testimonials,
-  SignIn
+  SignIn,
+  Pagination
 };
