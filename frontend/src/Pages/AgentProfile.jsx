@@ -68,7 +68,10 @@ export default function AgentProfile() {
               </div>
 
               {/* Contact button */}
-              <Button variant='text' className="w-full lg:w-auto px-6 py-2 font-semibold text-primaryText border border-primaryText rounded">
+              <Button
+                variant="text"
+                className="w-full lg:w-auto px-6 py-2 font-semibold text-primaryText border border-primaryText rounded"
+              >
                 Contact
               </Button>
             </div>
