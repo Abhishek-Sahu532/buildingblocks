@@ -1,4 +1,7 @@
 import { Typography } from '@material-tailwind/react';
+import { FaSquareFacebook } from 'react-icons/fa6';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -24,14 +27,12 @@ const Footer = () => {
               </Typography>
               <Typography variant="h6">info@mail.com</Typography>
             </div>
-
+    
             {/* Social Icons */}
             <div className="flex justify-center md:justify-start gap-3 mt-2">
-              <img src="images/img_icon_facebook.svg" alt="Facebook" className="h-7 w-7" />
-              <img src="images/img_icon_twitter.svg" alt="Twitter" className="h-7 w-7" />
-              <img src="images/img_icon_instragram.svg" alt="Instagram" className="h-7 w-7" />
-              <img src="images/img_icon_linked_in.svg" alt="LinkedIn" className="h-7 w-7" />
-              <img src="images/img_icon_youtube.svg" alt="YouTube" className="h-7 w-7" />
+              <FaSquareFacebook className="text-primaryText" />
+              <FaLinkedin className="text-primaryText" />
+              <FaSquareXTwitter className="text-primaryText" />
             </div>
           </div>
 

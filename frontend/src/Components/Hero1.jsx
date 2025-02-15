@@ -128,7 +128,7 @@ const Hero1 = () => {
       </div>
 
       <div className="flex justify-center items-center w-full md:w-[60%]">
-        <img src="images/img_image.png" alt="image_one" className="w-full md:max-w-[89%] object-cover" />
+        <img src="images/img_image.png" alt="image_one" className="w-full md:max-w-[89%] object-cover" loading='lazy' />
       </div>
     </div>
   );
