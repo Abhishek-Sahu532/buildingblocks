@@ -5,8 +5,8 @@ import { FaSquareXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center items-center w-full px-6 md:px-14 py-10 bg-white">
-      <div className="flex flex-col items-center justify-center w-full gap-10 md:gap-28 mx-auto max-w-[1200px]">
+    <footer className="flex justify-center items-center w-full px-6 md:px-14 py-10 mt-9">
+      <div className="flex flex-col items-center justify-center w-full gap-10 md:gap-28 mx-auto ">
         {/* Top Section: Logo & Contact */}
         <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 md:gap-16">
           {/* Left Side - Logo & Contact */}
