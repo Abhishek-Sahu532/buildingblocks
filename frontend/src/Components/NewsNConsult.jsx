@@ -2,11 +2,11 @@ import { Typography } from '@material-tailwind/react';
 
 const NewsNConsult = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full px-6 lg:px-14 py-12 lg:py-20">
-      <div className="max-w-6xl w-full">
+    <div className="flex flex-col  w-full px-6 mt-6 ">
+   
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
           <div className="flex flex-col justify-start items-center gap-6">
-            <Typography variant="h2" className="text-white tracking-[-0.72px]">
+            <Typography variant="h2" className="text-primaryText tracking-[-0.72px]">
               News & Consult
             </Typography>
           </div>
@@ -53,7 +53,7 @@ const NewsNConsult = () => {
             </div>
           ))}
         </div>
-      </div>
+
     </div>
   );
 };

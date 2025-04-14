@@ -5,8 +5,8 @@ import { Button, Typography } from '@material-tailwind/react';
 const FeaturedProperties = () => {
   const [selectedTab, setSelectedTab] = useState('Resident');
   return (
-    <div className="flex flex-col items-center justify-start w-full mt-14 px-4 md:px-0 text-primaryText">
-      <div className="flex flex-col items-center justify-start max-w-[1200px] w-full gap-8">
+    <div className="flex flex-col items-center justify-start w-full mt-14 px-4 md:px-0 text-primaryText ">
+      <div className="flex flex-col items-center justify-start w-full p-10 gap-8">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="flex flex-row justify-between items-start w-full mb-3">
             <Typography variant="h2" className="tracking-[-0.72px]">

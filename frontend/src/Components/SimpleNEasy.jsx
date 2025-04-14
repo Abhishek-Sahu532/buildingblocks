@@ -2,7 +2,7 @@ import { Button, Typography } from '@material-tailwind/react';
 
 const SimpleNEasy = () => {
   return (
-    <div className="flex flex-col items-center justify-start w-full gap-y-8 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+    <div className="flex flex-col items-center justify-start w-full gap-y-8  mx-auto px-4 sm:px-6 lg:px-8 mt-14">
       <div className="flex flex-col md:flex-row items-center gap-6 w-full">
         <div className="flex flex-col items-center md:items-start justify-start w-full md:w-1/2 gap-y-6">
           <Typography

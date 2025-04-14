@@ -2,7 +2,7 @@ import { Typography, Button } from '@material-tailwind/react';
 
 const Services = () => {
   return (
-    <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center w-full mx-auto max-w-[1200px] p-7 gap-6">
+    <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center w-full mx-auto p-7 gap-6">
       <div className="flex flex-col items-center justify-center w-full md:w-[49%] gap-[49px] p-[50px] bg-red-100 rounded-[20px]">
         <div className="flex flex-col items-center justify-start mt-[23px] gap-[15px]">
           <Typography variant="h2" className="tracking-[-0.72px] text-primaryText text-center">

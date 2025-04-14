@@ -5,7 +5,7 @@ import { useState } from 'react';
 const Hero1 = () => {
   const [activeTab, setActiveTab] = useState('buy');
   return (
-    <div className="flex flex-col md:flex-row lg:flex-row w-full mx-auto max-w-[1396px]">
+    <div className="flex flex-col md:flex-row lg:flex-row w-full mx-auto mt-6">
       <div className="flex flex-col items-center justify-start w-full md:w-[50%] gap-[15px]">
         <div className="flex flex-col items-center justify-start w-full gap-6">
           <Typography variant="h1" className="text-primaryText tracking-[-0.92px] text-center">

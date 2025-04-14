@@ -40,7 +40,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden py-10">
       <MainNavbar />
       <Outlet />
       <Footer />
