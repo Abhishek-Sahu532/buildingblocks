@@ -100,7 +100,7 @@ export default function AgentListPage() {
           </div>
 
           <div className="flex flex-col items-center justify-start w-full gap-6 text-primaryText">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-[1200px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 ">
               {agentList.map((agent, index) => (
                 <div key={index} className="flex flex-col items-center justify-start">
                   <img

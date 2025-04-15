@@ -70,10 +70,10 @@ export default function AboutUs() {
         <meta name="description" content="Web site created using create-react-app" />
       </Helmet>
 
-      <div className="flex flex-col items-center justify-start w-full gap-[50px] md:gap-[75px] lg:gap-[100px] bg-white-A700">
+      <div className="flex flex-col items-center justify-start w-full gap-[50px] md:gap-[75px] lg:gap-[100px] mt-7">
         <div className="flex flex-col items-center justify-start w-full gap-[50px] md:gap-[75px] lg:gap-[100px]">
           <div className="flex flex-row justify-center w-full">
-            <div className="flex flex-col items-center justify-start w-full gap-[38px] max-w-[1200px] px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col items-center justify-start w-full gap-[38px] px-4 md:px-6 lg:px-8">
               <div className="flex flex-col items-center justify-start w-full gap-4">
                 <h1 className="tracking-[-1.08px] text-center text-2xl md:text-3xl lg:text-4xl text-primaryText">
                   Reimagining real estate to <br />
@@ -134,7 +134,7 @@ export default function AboutUs() {
           </div>
 
           <div className="flex flex-col text-primaryText items-start justify-start w-full px-4 lg:px-[120px]">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center w-full max-w-[1147px] mx-auto">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center w-full mx-auto">
               <div className="w-full lg:w-[47%] mb-8 lg:mb-0">
                 <div className="flex flex-col items-start justify-start w-full gap-4 lg:gap-[18px]">
                   <h2 size="4xl" className="tracking-[-0.72px] text-primaryText text-2xl">
@@ -179,7 +179,7 @@ export default function AboutUs() {
           </div>
           {/* OUR VISION SECTION */}
           <div className="flex flex-col items-start justify-start w-full px-4 lg:px-[120px] text-secondaryText">
-            <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[1150px] mx-auto">
+            <div className="flex flex-col lg:flex-row justify-between items-center w-full mx-auto">
               <img
                 src="images/img_rectangle_20_589x496.png"
                 alt="image_five"
@@ -207,8 +207,8 @@ export default function AboutUs() {
 
           {/* team section */}
           <div className="flex flex-col items-center justify-start w-full text-primaryText">
-            <div className="flex flex-col items-center justify-start w-full gap-8 max-w-[1200px] px-4">
-              <h2 className="text-4xl tracking-[-0.72px] text-center">Building Blocks Team members</h2>
+            <div className="flex flex-col items-center justify-start w-full gap-8 px-4">
+              <h2 className="text-4xl text-primaryText tracking-[-0.72px] text-center">Building Blocks Team members</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                 {teamMemberDetails.map((detail, index) => (
@@ -232,7 +232,7 @@ export default function AboutUs() {
           </div>
           {/* news & consult section */}
           <div className="flex flex-col items-center justify-start w-full px-4 lg:px-14 py-8 lg:py-[120px] text-primaryText">
-            <div className="flex flex-col items-center justify-start w-full gap-8 max-w-[1200px]">
+            <div className="flex flex-col items-center justify-start w-full gap-8 ">
               <div className="flex flex-col items-center justify-start w-full gap-8">
                 <div className="flex flex-col md:flex-row justify-between items-center w-full gap-4">
                   <h2 className="!text-white-A700 text-4xl tracking-[-0.72px]">News & Consult</h2>

@@ -11,12 +11,22 @@ const NewsNConsult = () => {
             </Typography>
           </div>
           <div className="flex flex-row justify-start items-center gap-2">
-            <Typography variant="h3" className="mt-0.5 text-orange-700">
-              Explore All
-            </Typography>
-            <img src="images/img_icon_24px_v.svg" alt="explore_all_icon" className="h-6 w-6" />
+                    <h3 className=" text-orange-700">Explore All </h3>
+                    <div className="text-orange-700 animate-ping">
+                      {' '}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
+                  </div>
           </div>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12">
           {[
             {
