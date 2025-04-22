@@ -252,3 +252,30 @@ export const agentLogin = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const getAllAgents = async (req: Request, res: Response) => {
+  try {
+    let agents = await prisma.agent.findMany({});
+
+    if (!agents) {
+      return res.status(200).json({
+        success: false,
+        message: "No Agents Found"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: agents,
+      message: "All agents fetched successfully"
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Error", error);
+      return res.status(500).json({
+        success: false,
+        message: error?.message
+      });
+    }
+  }
+};

@@ -3,12 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 let initialState = {
   loading: false,
   success: false,
+  error:null,
   registrationSuccess: false,
   signInSuccess: false,
   registrationError: false,
   signInError: false,
   message: '',
-  agentDetails: {}
+  signedInAgentDetails:{},
+  agentDetails: {},
+  agents:{}
 };
 
 const AgentSlices = createSlice({
@@ -39,12 +42,28 @@ const AgentSlices = createSlice({
       state.loading = false;
       state.signInSuccess = true;
       state.signInError = null;
-      state.agentDetails = action.payload;
+      state.signedInAgentDetails = action.payload;
     },
     agentSignInFailure: (state, action) => {
       state.loading = false;
-      state.agentDetails = {};
+      state.signedInAgentDetails = {};
       state.signInError = action.payload;
+    },
+    getAllAgentRequest: (state)=>{
+      state.loading = false;
+      state.success = false;
+      state.error = null;
+    },
+    getAllAgentSuccess: (state, action)=>{
+      state.loading = false;
+      state.agents = action.payload;
+      state.success = true
+    },
+    getAllAgentFailure : (state,action)=>{
+      state.loading = false;
+      state.agents = {};
+      state.success = false;
+      state.error = action.payload
     }
   }
 });
@@ -55,7 +74,10 @@ export const {
   registerAgentFail,
   agentSignInSuccess,
   agentSignInFailure,
-  agentSignInRequest
+  agentSignInRequest,
+  getAllAgentRequest,
+  getAllAgentSuccess,
+  getAllAgentFailure
 } = AgentSlices.actions;
 
 export default AgentSlices.reducer;

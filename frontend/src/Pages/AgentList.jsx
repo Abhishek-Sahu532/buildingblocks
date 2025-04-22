@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 // import { CloseSVG } from '../assets/images';
 import { Button, Typography, Input } from '@material-tailwind/react';
 import { RatingBar } from '../Components/RatingBar';
 import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { getAllAgentRequest, getAllAgentSuccess, getAllAgentFailure } from "../redux/Slices/AgentSlices"
+import axios from 'axios';
 
 const dropDownOptions = [
   { label: 'Option1', value: 'option1' },
@@ -12,6 +16,8 @@ const dropDownOptions = [
 ];
 
 export default function AgentListPage() {
+  const dispatch = useDispatch();
+  const { loading, error, agents } = useSelector((state) => state.agent);
   const [searchBarValue, setSearchBarValue] = useState('');
   const agentList = [
     {
@@ -55,6 +61,38 @@ export default function AgentListPage() {
       review: ''
     }
   ];
+
+  console.log(loading, error, agents);
+
+ 
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+    const getAllAgentDetails = async () => {
+      try {
+        dispatch(getAllAgentRequest());
+        const config = {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        };
+        let res = '';
+        if (import.meta.env.VITE_DEV_MODE === 'production') {
+          res = await axios.get(`${import.meta.env.BACKEND_URL}/api/v1/agent/get-all-agents`, config);
+        } else {
+          res = await axios.get(`/api/v1/agent/get-all-agents`, config);
+        }
+        console.log(res);
+        dispatch(getAllAgentSuccess(res.data));
+      } catch (error) {
+        console.log(error);
+        dispatch(getAllAgentFailure());
+      }
+    };
+    getAllAgentDetails();
+  }, [error,dispatch]);
+
   return (
     <>
       <Helmet>
